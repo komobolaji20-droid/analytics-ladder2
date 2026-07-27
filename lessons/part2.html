@@ -24,7 +24,7 @@
   <div class="wrap">
     <span class="eyebrow">Rung 2 of 5</span>
     <h1 style="font-size: 2rem;">Part 2: Excel</h1>
-    <p class="lead">Read at your own pace. Work through each lessons exercise before moving on.</p>
+    <p class="lead">10 lessons, all built on the same snack shop table from Part 1. Read at your own pace.</p>
   </div>
 </header>
 
@@ -33,309 +33,412 @@
 <h1 id="part-2-excel">Part 2: Excel</h1>
 <p><em>(The Analytics Ladder — Lesson Content)</em></p>
 <hr />
-<h2 id="lesson-1-getting-to-know-excel">🧭 Lesson 1: Getting to Know
+<h2 id="lesson-1-getting-to-know-excel">Lesson 1: Getting to Know
 Excel</h2>
-<p><strong>Let's start simple</strong> Excel is like a giant grid of
-boxes — like graph paper on your computer. Each box is called a
-<strong>cell</strong>, and every cell has an address, just like a house
-has an address on a street. The box in the first column and first row is
-called <strong>A1</strong>. The one next to it is <strong>B1</strong>.
-Simple!</p>
-<p><strong>Key Ideas</strong></p>
-<p>📍 <strong>Navigating Excel</strong>: Use the arrow keys or click any
-cell to move around. Rows are numbered (1, 2, 3…) and columns are
-lettered (A, B, C…).</p>
-<p>🔗 <strong>Cell References — Relative vs. Absolute</strong>: When you
-write a formula and copy it to other cells, Excel normally
-<em>shifts</em> the reference automatically (this is called "relative" —
-like <code>A1</code>). Sometimes you want a cell to stay locked in place
-no matter where you copy the formula — you do this by adding dollar
-signs, like <code>$A$1</code> (this is called "absolute").</p>
-<p>🏷️ <strong>Named Ranges</strong>: Instead of remembering "the total
-is in cell D15," you can give that cell a name like
-<code>TotalSales</code> — so your formulas read like plain English:
-<code>=TotalSales*0.1</code>.</p>
-<p>📋 <strong>Tables &amp; Formatting</strong>: Turning a plain grid of
-data into an official "Table" (Insert → Table) makes Excel treat it
-smartly — automatic filtering, consistent formatting, and formulas that
-expand automatically when you add new rows.</p>
-<p><strong>A Simple Example</strong> You're tracking your pocket money.
-Cell B2 has "₦500" for Monday. If you write a formula in C2 that says
-<code>=B2*2</code> and copy it down to C3, Excel automatically changes
-it to <code>=B3*2</code> — that's a <strong>relative</strong> reference
-following you down the sheet.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Open Excel (or Google
-Sheets). Type five days of the week down column A, and a made-up amount
-of money next to each in column B. In column C, write a formula that
-doubles the amount, then copy it down all 5 rows. Watch how the cell
-reference changes automatically.</p>
-<p><strong>✅ Big Idea to Remember</strong> Every skill in Excel builds
-on this one idea: cells have addresses, and formulas use those addresses
-to do the thinking for you.</p>
+<p>Excel is a giant grid of boxes, like graph paper on your computer.
+Each box is called a cell, and every cell has an address, just like a
+house has an address on a street. The box in the first column and first
+row is called A1. The one next to it is B1.</p>
+<p>Let's bring back our snack shop from Part 1, and give it a proper
+home in Excel. Open a blank sheet and type this in, one row per snack,
+starting in cell A1:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Snack</th>
+<th>Type</th>
+<th>Price</th>
+<th>Units Sold</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Chin Chin</td>
+<td>Snack</td>
+<td>200</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>Coke</td>
+<td>Drink</td>
+<td>150</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td>Meat Pie</td>
+<td>Snack</td>
+<td>300</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>Fanta</td>
+<td>Drink</td>
+<td>150</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<p>That's cell A1 through D5. Notice we're using the exact same numbers
+from Part 1. Every lesson in this part will keep building on this same
+little table, so type it in now if you're following along.</p>
+<p>A few things worth knowing before you go further. When you write a
+formula and copy it to other cells, Excel normally shifts the reference
+automatically. This is called a relative reference. If you write
+<code>=C2*2</code> in cell E2 and copy it down to E3, Excel
+automatically changes it to <code>=C3*2</code>, following you down the
+sheet. Sometimes you want a cell to stay locked in place no matter where
+you copy the formula, and you do that by adding dollar signs, like
+<code>$C$2</code>. This is an absolute reference.</p>
+<p>You can also give a cell a name instead of remembering its address.
+Instead of "the total is in D6," you could name that cell TotalUnits and
+write formulas like <code>=TotalUnits*10</code> that actually read like
+plain English.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>In cell E2, write a formula that multiplies Price by Units Sold for
+Chin Chin, then copy that formula down to E3, E4, and E5. What total
+revenue does each snack show?</li>
+<li>Which snack, according to your new column, earned the shop the most
+money? Does it match the snack with the highest Units Sold, or a
+different one?</li>
+<li>If you copied the formula from E2 down to E5 and it used
+<code>$C$2</code> instead of <code>C2</code>, what would go wrong?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Every skill in Excel builds on this one idea: cells have addresses,
+and formulas use those addresses to do the thinking for you. You'll use
+this exact snack shop table for the rest of this part, so keep it
+open.</p>
 <hr />
-<h2 id="lesson-2-core-formulas-lookup-functions">➕ Lesson 2: Core
-Formulas &amp; Lookup Functions</h2>
-<p><strong>Let's start simple</strong> Formulas are how you tell Excel
-to calculate something instead of doing the maths yourself. Every
-formula starts with an equals sign (<code>=</code>).</p>
-<p><strong>Key Formulas to Know</strong></p>
-<ul>
-<li><code>=SUM(range)</code> — adds up numbers</li>
-<li><code>=SUMIFS(range, condition_range, condition)</code> — adds up
-numbers, but only ones that match a condition (e.g., total sales, but
-only for "Lagos")</li>
-<li><code>=COUNTIFS(...)</code> — counts entries that match a
-condition</li>
-<li><code>=AVERAGEIFS(...)</code> — finds the average, but only for
-matching entries</li>
-<li><code>=IF(condition, value_if_true, value_if_false)</code> — makes a
-decision inside a cell</li>
-<li><strong>Nested IF</strong>: putting one IF inside another, for more
-than two possible outcomes (e.g., grading A/B/C/F)</li>
-</ul>
-<p><strong>Lookup Functions</strong> These help you find information
-from a big table. The modern favorite is
-<code>=XLOOKUP(what_to_find, where_to_look, what_to_return)</code>. For
-example: <code>=XLOOKUP("Bolaji", A:A, C:C)</code> finds "Bolaji" in
-column A and returns the matching value in column C — like looking up
-someone's phone number using their name.</p>
-<p><strong>A Simple Example</strong> A shop has a list of products and
-prices. Instead of manually searching for "Rice" and typing its price,
-you write <code>=XLOOKUP("Rice", A:A, B:B)</code> and Excel finds it
-instantly — even in a list of 10,000 items.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Make a small table: Name,
-Subject, Score (5 rows). Use <code>=AVERAGEIFS</code> to find the
-average score for just one subject. Then use <code>=XLOOKUP</code> to
-find one specific student's score by typing their name.</p>
-<p><strong>✅ Big Idea to Remember</strong> Formulas do the repetitive
-thinking so you don't have to. The moment you type numbers into a
-calculator by hand instead of using a formula, you've missed the whole
+<h2 id="lesson-2-core-formulas-and-lookup-functions">Lesson 2: Core
+Formulas and Lookup Functions</h2>
+<p>Every formula in Excel starts with an equals sign. Beyond simple
+multiplication, a handful of formulas cover most of what you'll ever
+need day to day.</p>
+<p><code>SUM</code> adds up a range of numbers. <code>SUMIFS</code> does
+the same thing, but only for rows matching a condition, so you could
+total sales just for "Snack" type items and ignore drinks entirely.
+<code>COUNTIFS</code> counts matching rows instead of summing them.
+<code>AVERAGEIFS</code> finds an average, again only among matching
+rows. And <code>IF</code> makes a decision inside a cell:
+<code>IF(condition, value_if_true, value_if_false)</code>.</p>
+<p>There's also a family of lookup functions for finding information
+inside a big table. The modern one is <code>XLOOKUP</code>, written as
+<code>XLOOKUP(what_to_find, where_to_look, what_to_return)</code>.</p>
+<p>Let's use these on our shop's table. To find total revenue for just
+the Snack category, you'd write
+<code>=SUMIFS(E2:E5, B2:B5, "Snack")</code>, which checks column B for
+"Snack" and sums the matching revenue in column E. To find one snack's
+price without scrolling to look for it,
+<code>=XLOOKUP("Meat Pie", A2:A5, C2:C5)</code> searches column A for
+"Meat Pie" and returns its price from column C, which is 300.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Write a SUMIFS formula that totals revenue for just the "Drink"
+category from your table. What number do you get?</li>
+<li>Write an AVERAGEIFS formula that finds the average Units Sold for
+snacks only (Type = "Snack"). How does that compare to the average for
+drinks?</li>
+<li>Use XLOOKUP to find the Units Sold for "Coke" without looking at the
+table directly. Does the number it returns match what you can see in row
+3?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Formulas do the repetitive thinking so you don't have to. The moment
+you start typing numbers into a calculator by hand instead of using a
+formula on data that's already in your sheet, you've missed the whole
 point of Excel.</p>
 <hr />
-<h2 id="lesson-3-text-functions-data-cleaning">🧹 Lesson 3: Text
-Functions &amp; Data Cleaning</h2>
-<p><strong>Let's start simple</strong> Real-world data is almost never
-perfectly neat. Names might have extra spaces, text might be in the
-wrong case, or the same customer might accidentally appear twice. Before
-you can analyze data, you usually have to clean it first — just like
-washing vegetables before cooking.</p>
-<p><strong>Key Text Functions</strong> - <code>=TRIM(text)</code> —
-removes extra spaces - <code>=LEFT(text, n)</code> /
-<code>=RIGHT(text, n)</code> — grabs characters from the start or end of
-text - <code>=MID(text, start, n)</code> — grabs characters from the
-middle - <code>=CONCATENATE(...)</code> or <code>=TEXTJOIN(...)</code> —
-joins pieces of text together (e.g., joining "John" and "Doe" into "John
-Doe")</p>
-<p><strong>Data Cleaning Tools</strong> - <strong>Remove
-Duplicates</strong> (Data tab → Remove Duplicates): deletes repeated
-rows automatically - <strong>Handling blanks and errors</strong>: use
-<code>=IFERROR(formula, "message")</code> to replace scary error codes
-with something readable, like "Not Found"</p>
-<p><strong>A Simple Example</strong> A spreadsheet has " John Doe " with
-extra spaces at the start and end. <code>=TRIM(A2)</code> cleans it up
-to "John Doe" — which matters, because "John Doe" and " John Doe " look
-the same to a human but are treated as <em>completely different
-text</em> by Excel.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Type your first and last
-name into two separate cells, with a few extra spaces added by accident.
-Use <code>=TRIM</code> and <code>=TEXTJOIN</code> (or
-<code>=CONCATENATE</code>) to combine them into one clean full name.</p>
-<p><strong>✅ Big Idea to Remember</strong> Messy data leads to wrong
-answers — even if every formula afterward is perfect. Cleaning always
-comes first.</p>
+<h2 id="lesson-3-text-functions-and-data-cleaning">Lesson 3: Text
+Functions and Data Cleaning</h2>
+<p>Real-world data is almost never as neat as our shop's table. Names
+get extra spaces, text ends up in the wrong case, and the same entry
+sometimes gets typed twice by accident. Before you analyze anything, you
+usually clean it first, the same way you'd wash vegetables before
+cooking.</p>
+<p>A few functions handle most cleaning jobs. <code>TRIM</code> removes
+extra spaces from text. <code>LEFT</code> and <code>RIGHT</code> grab
+characters from the start or end of a piece of text.
+<code>TEXTJOIN</code> or <code>CONCATENATE</code> join pieces of text
+together. And for actual duplicate rows, Excel has a built-in Remove
+Duplicates tool under the Data tab.</p>
+<p>Suppose the person logging our shop's sales got sloppy one day and
+typed "Meat Pie" with a trailing space, and another day typed " meat
+pie" in lowercase with a leading space. To Excel, these look like three
+completely different snacks, even though they're the same item.
+<code>=TRIM(A2)</code> would strip the extra spaces, but wouldn't fix
+the capitalization on its own; you'd combine it with <code>UPPER</code>
+or <code>PROPER</code> to standardize the case as well:
+<code>=PROPER(TRIM(A2))</code> turns any messy version into a clean
+"Meat Pie" every time.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Type " Chin Chin " into a new cell, deliberately including extra
+spaces at the start and end. Write a TRIM formula that cleans it and
+confirm the result matches your original A2 exactly.</li>
+<li>If your shop's logger accidentally typed "coke" in lowercase on one
+day and "Coke" with a capital on another, what would happen if you tried
+to SUMIFS by "Coke" without first cleaning the text?</li>
+<li>Write a formula using PROPER and TRIM together that would fix both
+problems from question 2 in one step.</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Messy data leads to wrong answers, even if every formula afterward is
+technically perfect. Cleaning always comes first, and it's usually the
+least exciting but most important step in the whole process.</p>
 <hr />
-<h2 id="lesson-4-data-validation-conditional-formatting">✅ Lesson 4:
-Data Validation &amp; Conditional Formatting</h2>
-<p><strong>Let's start simple</strong> Have you ever filled a form
-online where you had to pick from a dropdown list instead of typing your
-own answer? That's data validation — it stops people from entering the
-wrong kind of information in the first place.</p>
-<p><strong>Data Validation</strong> Go to Data → Data Validation, and
-you can restrict a cell to only accept: a dropdown list of choices,
-numbers within a range, or dates within a range. This prevents typos
-like "Yess" instead of "Yes."</p>
-<p><strong>Conditional Formatting</strong> This automatically changes
-how a cell <em>looks</em> based on its value — for example, making any
-score below 50 turn red automatically, without you manually coloring
-each cell yourself.</p>
-<p><strong>A Simple Example</strong> You're building a form for your
-Ladder members to fill in their "Status" (Beginner, Intermediate,
-Advanced). Instead of letting people type anything, you create a
-dropdown list with just those 3 options — so nobody accidentally types
-"begginer" with a typo.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> List 10 random numbers in
-a column. Use Conditional Formatting to automatically highlight any
-number greater than 50 in green, and any number less than 20 in red.</p>
-<p><strong>✅ Big Idea to Remember</strong> Good spreadsheets prevent
-mistakes before they happen (validation) and make important information
-jump out visually (conditional formatting) — both save you from manually
-checking every single cell.</p>
+<h2 id="lesson-4-data-validation-and-conditional-formatting">Lesson 4:
+Data Validation and Conditional Formatting</h2>
+<p>Have you ever filled out a form online where you had to pick from a
+dropdown instead of typing your own answer? That's data validation, and
+it stops the wrong kind of information from being entered in the first
+place.</p>
+<p>Go to the Data tab and choose Data Validation, and you can restrict a
+cell to only accept a dropdown list of choices, numbers within a range,
+or dates within a range. This is exactly how the "coke" versus "Coke"
+problem from Lesson 3 gets prevented at the source, instead of cleaned
+up after the fact.</p>
+<p>Conditional Formatting is a different tool that changes how a cell
+looks based on its value, without you manually colouring anything
+yourself.</p>
+<p>Let's set up both for our shop. In column A, apply Data Validation
+with a dropdown list containing exactly "Chin Chin," "Coke," "Meat Pie,"
+and "Fanta," so whoever logs sales can only pick from that exact list,
+never a slightly different spelling. Then apply Conditional Formatting
+to your Units Sold column so that any value below 10 turns red
+automatically. Looking at our table, Meat Pie's 8 units would
+immediately show up red, drawing attention to it without you having to
+notice it yourself while scanning the numbers.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Set up a dropdown list in a new column restricted to just the four
+snack names. Try typing a fifth, made-up name into that column; what
+happens?</li>
+<li>Apply conditional formatting to your Units Sold column so anything
+under 10 shows red. Which row turns red, and does it match what you'd
+expect from Part 1's discussion of Meat Pie?</li>
+<li>Add a second conditional formatting rule that turns Units Sold green
+if it's 15 or higher. Which rows qualify?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Good spreadsheets prevent mistakes before they happen with
+validation, and make important information visible at a glance with
+conditional formatting. Both save you from manually checking every
+single cell yourself.</p>
 <hr />
-<h2 id="lesson-5-pivot-tables">🔄 Lesson 5: Pivot Tables</h2>
-<p><strong>Let's start simple</strong> Imagine you have 1,000 rows of
-sales data, and you want one quick answer: "What's the total sales per
-region?" Scrolling and adding manually would take forever. A
-<strong>Pivot Table</strong> does this in seconds — it's one of the most
-powerful tools in all of Excel.</p>
-<p><strong>How It Works</strong> You take your raw data and "pivot" it —
-dragging fields into four boxes: <strong>Rows</strong>,
-<strong>Columns</strong>, <strong>Values</strong>, and
-<strong>Filters</strong>. Excel automatically groups and summarizes
-everything for you.</p>
-<p><strong>A Simple Example</strong> You have a table of 500 sales
-records with columns: Region, Product, Amount. Drag "Region" into Rows
-and "Amount" into Values — instantly, you get a clean summary table
-showing total sales for each region, without writing a single
-formula.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Create a small table with
-10 rows: Name, Subject, Score. Build a Pivot Table that shows the
-average score per subject. Notice how fast it is compared to calculating
-it by hand.</p>
-<p><strong>✅ Big Idea to Remember</strong> Whenever you find yourself
-asking "what's the total/average/count of X, grouped by Y?" — that's a
-Pivot Table question. It's often faster than writing any formula.</p>
+<h2 id="lesson-5-pivot-tables">Lesson 5: Pivot Tables</h2>
+<p>Imagine our shop's table wasn't four rows but four thousand, covering
+a full year of daily sales instead of one snapshot. Scrolling through
+and adding things up manually would take forever. A Pivot Table answers
+a question like "what's total revenue per snack type?" in seconds, and
+it's one of the most useful tools in all of Excel.</p>
+<p>You take your raw data and drag fields into four boxes: Rows,
+Columns, Values, and Filters. Excel groups and summarizes everything
+automatically.</p>
+<p>Using our shop's table, drag "Type" into Rows and "Units Sold" into
+Values. Instantly, without writing a single formula, you get a clean
+summary showing 23 units sold for Snack (15 Chin Chin plus 8 Meat Pie)
+and 32 for Drink (20 Coke plus 12 Fanta). That's the same SUMIFS math
+from Lesson 2, done automatically by dragging two fields instead of
+typing a formula.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Build a Pivot Table from your shop's data with "Type" in Rows and
+"Price" in Values, set to show the average instead of the sum. What
+average price does Snack show versus Drink?</li>
+<li>Now change the Values field to show a count instead of a sum or
+average. How many items fall under each Type?</li>
+<li>Compare the Pivot Table's Type totals for Units Sold to the SUMIFS
+formulas you wrote in Lesson 2. Do the numbers match?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Whenever you find yourself asking "what's the total, average, or
+count of something, grouped by something else," that's a Pivot Table
+question, and it's often faster to build than writing the equivalent
+formula by hand.</p>
 <hr />
-<h2 id="lesson-6-charts-data-visualization-in-excel">🎨 Lesson 6: Charts
-&amp; Data Visualization in Excel</h2>
-<p><strong>Let's start simple</strong> Just like we learned in Part 1, a
-chart turns a boring list of numbers into a picture anyone can
-understand instantly. Excel makes this easy — highlight your data, click
-Insert, and pick a chart type.</p>
-<p><strong>Common Chart Types</strong> - <strong>Bar/Column
-Chart</strong>: comparing categories - <strong>Line Chart</strong>:
-showing change over time - <strong>Pie Chart</strong>: showing parts of
-a whole - <strong>Combo Chart</strong>: mixing two chart types together
-(e.g., bars for sales + a line for target) -
-<strong>Sparklines</strong>: tiny mini-charts that fit inside a single
-cell — great for showing a quick trend next to each row of data</p>
-<p><strong>A Simple Example</strong> You have monthly sales for the
-whole year in one row. Instead of a full chart, you insert a Sparkline
-right next to the numbers — a tiny line showing the trend at a glance,
-without taking up a whole chart's worth of space.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Using the sleep-tracking
-data from Part 1 (or make up a new week of data), create a real Column
-Chart in Excel this time. Then try adding a Sparkline next to your data
-as well.</p>
-<p><strong>✅ Big Idea to Remember</strong> Charts aren't decoration —
-they're a translation tool. Always ask: "What chart type will make this
-number easiest for someone else to understand instantly?"</p>
+<h2 id="lesson-6-charts-and-visualization-in-excel">Lesson 6: Charts and
+Visualization in Excel</h2>
+<p>A chart turns a list of numbers into a picture anyone can understand
+instantly. In Excel, you highlight your data, click Insert, and pick a
+chart type.</p>
+<p>A Bar or Column Chart compares categories against each other, which
+is exactly what our four snacks call for. A Line Chart shows change over
+time, useful once you're tracking sales across multiple weeks instead of
+one day. A Combo Chart mixes two chart types, like bars for actual sales
+plus a line for a sales target. And a Sparkline is a tiny chart that
+fits inside a single cell, handy for showing a quick trend next to each
+row without taking up a whole chart's worth of space.</p>
+<p>Select your snack shop's Snack column and Units Sold column together,
+then insert a simple Column Chart. Instantly, you can see that Coke's
+bar towers over Meat Pie's, the same comparison that took a sentence to
+explain back in Part 1's Lesson 5, now visible at a glance.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Build a Column Chart from your Snack and Units Sold columns. Which
+bar is tallest, and does it match what you calculated as the top seller
+back in Lesson 1?</li>
+<li>Add a second series to your chart showing Price alongside Units
+Sold. Does the chart still read clearly with two different measures on
+it, or does it get confusing?</li>
+<li>If you had four weeks of data instead of one day, which chart type
+from this lesson would you switch to, and why?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Charts aren't decoration. They're a translation tool. Always ask
+yourself which chart type will make a number easiest for someone else to
+understand instantly, the same question you learned to ask back in Part
+1.</p>
 <hr />
-<h2 id="lesson-7-exploratory-data-analysis-summary-statistics">🔍 Lesson
-7: Exploratory Data Analysis &amp; Summary Statistics</h2>
-<p><strong>Let's start simple</strong> Before you build any dashboard or
-draw any conclusion, you should first just <em>explore</em> your data —
-like walking around a new house before deciding where to put your
-furniture. This is called Exploratory Data Analysis, or EDA.</p>
-<p><strong>Key Ideas</strong> - <strong>Aggregated vs. Disaggregated
-Data</strong>: Aggregated means summarized (e.g., "Total sales:
-₦2,000,000"). Disaggregated means broken down into detail (e.g., sales
-listed row-by-row per customer). You often need to move between both
-views. - <strong>Summary Statistics in Excel</strong>: use
-<code>=AVERAGE()</code>, <code>=MEDIAN()</code>, <code>=MAX()</code>,
-<code>=MIN()</code>, <code>=COUNT()</code> — or even faster, use the
-Data → Data Analysis → Descriptive Statistics tool to get all of them at
-once.</p>
-<p><strong>A Simple Example</strong> Before building any dashboard for a
-shop's sales, you first check: What's the average sale amount? What's
-the highest and lowest? Are there any obviously wrong numbers (like a
-sale of -₦500, which shouldn't exist)? This quick check often catches
-big problems early.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Take any list of 10+
-numbers (could be your family members' ages, or prices of things in your
-house). Find the average, max, min, and count using Excel formulas.</p>
-<p><strong>✅ Big Idea to Remember</strong> Never jump straight to
-charts and conclusions. Always explore your data first — you'll often
-catch mistakes or surprises before they become embarrassing later.</p>
+<h2
+id="lesson-7-exploratory-data-analysis-and-summary-statistics">Lesson 7:
+Exploratory Data Analysis and Summary Statistics</h2>
+<p>Before building any dashboard or drawing any conclusion, you should
+explore your data first, the same way you'd walk around a new house
+before deciding where to put your furniture. This is called Exploratory
+Data Analysis, or EDA.</p>
+<p>Aggregated data means summarized, like "total revenue: ₦9,300."
+Disaggregated data is broken down into detail, like our shop's
+row-by-row snack list. You'll constantly move between both views. For
+summary statistics, <code>AVERAGE</code>, <code>MEDIAN</code>,
+<code>MAX</code>, <code>MIN</code>, and <code>COUNT</code> cover most of
+what you need, or you can use the Data Analysis ToolPak's Descriptive
+Statistics option to get all of them at once.</p>
+<p>Run these on your shop's Price column: the average price is
+(200+150+300+150)/4, which is 200. The maximum is 300 for Meat Pie, the
+minimum is 150 (shared by Coke and Fanta), and the count is 4 items.
+Already, before building a single chart, you've noticed that Meat Pie is
+priced 50% above the average, which might be worth keeping in mind when
+you get to Lesson 8's forecasting.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Run AVERAGE, MAX, MIN, and COUNT on your Units Sold column. What
+does each one tell you?</li>
+<li>Which single number from your EDA check would you flag as unusual or
+worth a second look, and why?</li>
+<li>If a fifth snack was added to the table priced at ₦2,000 by mistake
+(a typo, meant to be ₦200), which of your four summary statistics would
+immediately look wrong, and which might hide the mistake?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Never jump straight to charts and conclusions. Always explore your
+data first. You'll often catch mistakes or surprises before they become
+embarrassing later, the same lesson from Part 1 applied with real Excel
+tools this time.</p>
 <hr />
-<h2 id="lesson-8-what-if-analysis-forecasting-dynamic-arrays">🔮 Lesson
-8: What-If Analysis, Forecasting &amp; Dynamic Arrays</h2>
-<p><strong>Let's start simple</strong> What if you want to answer a
-"what if" question — like "What if I saved ₦500 every week — how much
-would I have in 6 months?" Excel has tools built exactly for these kinds
-of questions.</p>
-<p><strong>What-If Analysis &amp; Goal Seek</strong> Goal Seek works
-backward: instead of you calculating the answer, you tell Excel the
-<em>answer you want</em>, and it figures out what input would get you
-there. Example: "I want my total savings to hit ₦50,000 — how much do I
-need to save weekly?"</p>
-<p><strong>Forecasting in Excel</strong> The <code>FORECAST</code>
-function (or the built-in Forecast Sheet tool) looks at your past data
-and predicts future values — useful for predicting next month's sales
-based on the last 12 months.</p>
-<p><strong>Dynamic Array Functions</strong> Modern Excel has smart
-functions that "spill" results automatically into multiple cells: -
-<code>=UNIQUE(range)</code> — lists only the unique values, removing
-repeats - <code>=FILTER(range, condition)</code> — pulls out only rows
-matching a condition - <code>=SORT(range)</code> — sorts a list
-automatically</p>
-<p><strong>A Simple Example</strong> You have a list of 100 customer
-orders, some regions repeated many times. <code>=UNIQUE(A2:A100)</code>
-instantly gives you a clean list of just the different regions — no
-manual checking needed.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Make a list of 10 items
-with repeats (e.g., your favorite foods, with some listed twice). Use
-<code>=UNIQUE</code> to get a clean list with no repeats.</p>
-<p><strong>✅ Big Idea to Remember</strong> Excel isn't just for looking
-backward at what already happened — with What-If Analysis and
-Forecasting, it can help you plan forward too.</p>
+<h2 id="lesson-8-what-if-analysis-forecasting-and-dynamic-arrays">Lesson
+8: What-If Analysis, Forecasting, and Dynamic Arrays</h2>
+<p>What if you want to answer a "what if" question, like "what if I
+raised Meat Pie's price by ₦50, how much more revenue would that bring
+in?" Excel has tools built exactly for this.</p>
+<p>Goal Seek works backward: instead of you calculating the answer, you
+tell Excel the answer you want and it figures out what input gets you
+there. The <code>FORECAST</code> function looks at past data and
+predicts future values, useful once you have several weeks of sales
+instead of one day. And dynamic array functions "spill" results
+automatically into multiple cells. <code>UNIQUE</code> lists only the
+distinct values in a range, <code>FILTER</code> pulls out rows matching
+a condition, and <code>SORT</code> arranges a list automatically.</p>
+<p>Suppose the shop owner wants to know: "If I want ₦10,000 in total
+revenue instead of my current ₦9,300, how many more Meat Pies would I
+need to sell, assuming everything else stays the same?" That's a Goal
+Seek question: set the target cell to your total revenue formula, the
+goal to 10000, and the cell to change to Meat Pie's Units Sold. For
+UNIQUE, <code>=UNIQUE(B2:B5)</code> on your Type column would return
+just "Snack" and "Drink," even though the column has four rows.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Use Goal Seek to find out how many Meat Pies would need to sell
+(with everything else unchanged) to reach ₦10,000 total revenue. What
+number does it give you?</li>
+<li>Write a UNIQUE formula on your Snack column. Since all four names
+are already different, what would you expect the result to look like
+compared to running UNIQUE on the Type column instead?</li>
+<li>Write a FILTER formula that shows only rows where Type equals
+"Snack." How many rows does it return, and do they match Chin Chin and
+Meat Pie?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Excel isn't just for looking backward at what already happened. With
+What-If Analysis and Forecasting, it helps you plan forward too, turning
+"I wonder what would happen if" into an actual answer.</p>
 <hr />
-<h2 id="lesson-9-introduction-to-power-query">⚡ Lesson 9: Introduction
-to Power Query</h2>
-<p><strong>Let's start simple</strong> Imagine you get sales data every
-week from 3 different sources — one messy Excel file, one CSV, and one
-from a website. Manually cleaning and combining these every single week
-would take hours. <strong>Power Query</strong> is Excel's built-in tool
-for automating exactly that.</p>
-<p><strong>Key Ideas</strong> - Power Query lets you connect to messy
-data, clean it step-by-step, and it <em>remembers every step</em> — so
-next week, when new data comes in, you just click "Refresh" and it
-repeats all the cleaning automatically - This is the beginning of
-something called <strong>ETL</strong>: Extract (get the data), Transform
-(clean and shape it), Load (bring it into your worksheet)</p>
-<p><strong>A Simple Example</strong> Every month, you download a messy
-sales report with extra spaces, inconsistent capitalization, and a few
-blank rows. You clean it once using Power Query. Next month, you get a
-new messy file — instead of cleaning it all over again by hand, you just
-click "Refresh," and Power Query repeats every step automatically.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Open Power Query (Data tab
-→ Get Data). Import any small CSV or Excel file you have and explore the
-interface. Try removing a column or changing a data type — notice how
-Power Query records each action as a numbered "step."</p>
-<p><strong>✅ Big Idea to Remember</strong> Power Query turns repetitive
-cleaning work into a one-time setup — this is your first real taste of
-automation, and it's exactly the same thinking you'll use later in
-Python.</p>
+<h2 id="lesson-9-introduction-to-power-query">Lesson 9: Introduction to
+Power Query</h2>
+<p>Imagine the shop owner starts getting sales data from three sources
+every week: one messy spreadsheet from the till, one CSV exported from a
+delivery app, and one handwritten log typed up later. Cleaning and
+combining these by hand every single week would eat hours. Power Query
+is Excel's built-in tool for automating exactly that.</p>
+<p>Power Query lets you connect to messy data, clean it step by step,
+and it remembers every step you took. Next week, when new data comes in,
+you click Refresh and it repeats the entire cleaning process
+automatically. This is the beginning of something called ETL: Extract
+the data, Transform it by cleaning and shaping, then Load it into your
+worksheet ready to use.</p>
+<p>Take our shop's table, but imagine it arrived with the exact messy
+text problems from Lesson 3: extra spaces, inconsistent capitalization.
+In Power Query, you'd apply a Trim step and a Capitalize Each Word step
+once. Every future week's file gets those same two fixes applied
+automatically the moment you hit Refresh, instead of you manually
+retyping PROPER and TRIM formulas every single time new data lands.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Open Power Query (Data tab, Get Data) and import your shop's table
+as a small CSV or Excel file. What do you see in the Applied Steps list
+after you make even one change, like removing a column?</li>
+<li>If you added a Trim step and a Remove Duplicates step in Power
+Query, in what order would you want them to run, and why does the order
+matter?</li>
+<li>Compare this "clean once, refresh forever" workflow to the manual
+TRIM and PROPER formulas from Lesson 3. Which approach would you rather
+maintain if you got a new messy file every single week?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Power Query turns repetitive cleaning work into a one-time setup.
+This is your first real taste of automation, and it's the exact same
+thinking you'll use again later in Python.</p>
 <hr />
-<h2 id="lesson-10-working-efficiently-in-excel">⌨️ Lesson 10: Working
+<h2 id="lesson-10-working-efficiently-in-excel">Lesson 10: Working
 Efficiently in Excel</h2>
-<p><strong>Let's start simple</strong> The fastest Excel users you'll
-ever see barely touch their mouse. Learning a handful of keyboard
-shortcuts can save you hours over time — and it makes you look like a
-true professional.</p>
-<p><strong>Must-Know Shortcuts</strong> - <code>Ctrl + C</code> /
-<code>Ctrl + V</code> — copy / paste - <code>Ctrl + Z</code> — undo
-(your best friend!) - <code>Ctrl + Arrow key</code> — jump to the edge
-of your data instantly - <code>Ctrl + Shift + L</code> — turn filters
-on/off - <code>Alt + =</code> — auto-sum a column instantly -
-<code>F4</code> — repeat your last action, or lock a cell reference ($)
-while typing a formula</p>
-<p><strong>A Simple Example</strong> Instead of scrolling down 500 rows
-to find the bottom of your data, press <code>Ctrl + Down Arrow</code>
-from the top of the column — Excel jumps you straight there in an
-instant.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Open any spreadsheet with
-a few rows of data. Practice these 3 shortcuts:
-<code>Ctrl + Down Arrow</code> to jump to the bottom,
-<code>Alt + =</code> to auto-sum a column, and <code>Ctrl + Z</code> to
-undo something on purpose, just to see it work.</p>
-<p><strong>✅ Big Idea to Remember</strong> Speed isn't about typing
-fast — it's about not wasting time on repetitive clicks. A few
-shortcuts, practiced until they're automatic, will save you real hours
-every single week.</p>
+<p>The fastest Excel users barely touch their mouse. A handful of
+keyboard shortcuts, practiced until automatic, save real hours over
+time.</p>
+<p><code>Ctrl+C</code> and <code>Ctrl+V</code> copy and paste.
+<code>Ctrl+Z</code> undoes your last action, arguably the most useful
+shortcut in the entire program. <code>Ctrl</code> plus an arrow key
+jumps to the edge of your data instantly instead of scrolling.
+<code>Ctrl+Shift+L</code> toggles filters on and off. <code>Alt+=</code>
+auto-sums a column in one keystroke. And <code>F4</code> repeats your
+last action, or locks a cell reference with dollar signs while you're
+typing a formula.</p>
+<p>On our shop's table, instead of manually selecting E2 through E5 and
+clicking the AutoSum button in the ribbon, you'd click E6 and press
+<code>Alt+=</code>, and Excel writes the SUM formula for you instantly.
+If your table had 500 rows instead of 4, pressing
+<code>Ctrl+Down Arrow</code> from A1 would jump you straight to the
+bottom row without scrolling through hundreds of entries by hand.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Click below your Units Sold column and use Alt+= to auto-sum it.
+Does the total match the 55 units we calculated by hand back in Part
+1?</li>
+<li>Practice Ctrl+Z by deleting a cell's content on purpose, then
+undoing it. Did the exact original value come back?</li>
+<li>If your shop's table grew from 4 rows to 400, which shortcut from
+this lesson would save you the most time, and in what specific situation
+would you use it?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Speed in Excel isn't about typing fast. It's about not wasting time
+on repetitive clicks. A few shortcuts, practiced until they're second
+nature, save real hours every single week.</p>
 <hr />
-<p><strong>🎉 You've completed Part 2: Excel!</strong> Next up: turning
-what you've learned about organizing and analyzing data into the
-language databases speak — <strong>SQL</strong>.</p>
+<p>You've now built and analyzed the same small snack shop table ten
+different ways in Excel: cleaned it, validated it, summarized it,
+charted it, forecasted with it, and automated its cleanup. Next up:
+doing the same kind of work at a much larger scale, in the language real
+databases speak, SQL.</p>
   </div>
 </section>
 
@@ -354,4 +457,4 @@ language databases speak — <strong>SQL</strong>.</p>
 </footer>
 
 </body>
-</html>
+  </html>
