@@ -1,0 +1,383 @@
+/* ============================================
+   THE ANALYTICS LADDER — Dark Theme v3
+   Matched to komobolaji20-droid.github.io
+   Palette:
+     --bg:      #0A0F0D  (near-black, green-tinted)
+     --bg-alt:  #0F1512  (card/section background)
+     --green:   #2FE6A0  (neon mint-green accent)
+     --green-dim: rgba(47,230,160,0.12)
+     --text:    #ECF1EE  (off-white)
+     --muted:   #8B968F  (muted gray-green body text)
+     --border:  #1E2A24  (hairline borders)
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0A0F0D;
+  --bg-alt: #0F1512;
+  --card: #10160F;
+  --green: #2FE6A0;
+  --green-dim: rgba(47,230,160,0.12);
+  --text: #ECF1EE;
+  --muted: #8B968F;
+  --border: #1E2A24;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image:
+    linear-gradient(rgba(47,230,160,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47,230,160,0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 19px;
+  line-height: 1.75;
+}
+
+h1, h2, h3, .display {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--text);
+  line-height: 1.15;
+  margin: 0 0 0.55em 0;
+  font-weight: 700;
+}
+h2 { font-size: 2rem; }
+h3 { font-size: 1.35rem; }
+
+p { margin: 0 0 1.1em 0; color: var(--muted); }
+
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+img { max-width: 100%; }
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.06em;
+}
+
+.wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ---------- Nav ---------- */
+.rail {
+  background: rgba(10,15,13,0.92);
+  backdrop-filter: blur(8px);
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--border);
+}
+.rail .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.rail-brand {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  text-transform: uppercase;
+}
+.rail-brand .rung-mark { color: var(--green); }
+.rail-links {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.rail-links a {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+}
+.rail-links a:hover, .rail-links a.active {
+  color: var(--green);
+  text-decoration: none;
+  border-bottom-color: var(--green);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 90px 0 100px 0;
+  position: relative;
+}
+.hero .wrap { position: relative; z-index: 2; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--green);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  margin-bottom: 22px;
+  padding: 7px 16px;
+  border: 1px solid rgba(47,230,160,0.35);
+  border-radius: 3px;
+  background: var(--green-dim);
+}
+.eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  display: inline-block;
+}
+.hero h1 {
+  font-size: 3rem;
+  max-width: 660px;
+  letter-spacing: -0.01em;
+  font-weight: 800;
+}
+.hero h1 .accent { color: var(--green); }
+.hero p.lead {
+  max-width: 580px;
+  color: var(--muted);
+  font-size: 1.25rem;
+  margin-top: 20px;
+  border-left: 3px solid var(--green);
+  padding-left: 18px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block;
+  background: var(--green);
+  color: #061410;
+  font-weight: 700;
+  padding: 15px 30px;
+  border-radius: 4px;
+  margin-top: 30px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.92rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 0 0 rgba(47,230,160,0);
+}
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(47,230,160,0.35);
+}
+.btn-outline {
+  display: inline-block;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 4px;
+  margin-top: 30px;
+  margin-left: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.92rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.btn-outline:hover {
+  border-color: var(--green);
+  color: var(--green);
+  text-decoration: none;
+}
+
+/* ---------- Sections ---------- */
+section.block { padding: 76px 0; }
+section.block.alt {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.section-label {
+  color: var(--green);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--card);
+  border-radius: 8px;
+  padding: 32px;
+  border: 1px solid var(--border);
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+.card:hover { border-color: var(--green); transform: translateY(-2px); }
+.card h3 { margin-bottom: 10px; }
+.card p { margin: 0; color: var(--muted); font-size: 1.02rem; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+/* ---------- Stat cards (portfolio style) ---------- */
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 26px 28px;
+}
+.stat-card .num {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--green);
+  font-weight: 800;
+  font-size: 2.4rem;
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-card .label {
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+/* ---------- Tag chips ---------- */
+.tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: 4px;
+}
+
+/* ---------- Ladder / Rung list (TOC & Parts) ---------- */
+.ladder-list { list-style: none; margin: 0; padding: 0; counter-reset: rung; }
+.rung {
+  counter-increment: rung;
+  display: flex;
+  gap: 26px;
+  align-items: flex-start;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+}
+.rung:last-child { border-bottom: 1px solid var(--border); }
+.rung-num {
+  flex: 0 0 auto;
+  width: 54px;
+  height: 54px;
+  border-radius: 6px;
+  background: var(--green-dim);
+  border: 1px solid rgba(47,230,160,0.35);
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.rung-body h3 { margin-bottom: 6px; font-size: 1.4rem; }
+.rung-body p { margin: 0 0 10px 0; font-size: 1.05rem; }
+.rung-body a { font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.rung-body .status {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  border: 1px solid;
+}
+.status.ready { background: var(--green-dim); color: var(--green); border-color: rgba(47,230,160,0.35); }
+.status.soon { background: rgba(139,150,143,0.08); color: var(--muted); border-color: var(--border); }
+
+/* ---------- Lesson content page ---------- */
+.lesson { font-size: 1.08rem; }
+.lesson h1 { font-size: 2.1rem; }
+.lesson h2 {
+  margin-top: 2.4em;
+  font-size: 1.7rem;
+  padding-top: 0.5em;
+  border-top: 2px solid var(--border);
+}
+.lesson h2:first-of-type { border-top: none; margin-top: 0.4em; }
+.lesson p { line-height: 1.8; color: var(--muted); }
+.lesson strong { color: var(--text); }
+.lesson ul, .lesson ol { padding-left: 1.4em; line-height: 1.8; color: var(--muted); }
+.lesson li { margin-bottom: 0.4em; }
+.lesson table { border-collapse: collapse; width: 100%; margin: 22px 0; font-size: 1rem; }
+.lesson th, .lesson td { border: 1px solid var(--border); padding: 12px 14px; text-align: left; }
+.lesson th { background: var(--bg-alt); color: var(--green); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.lesson td { color: var(--muted); }
+.lesson pre {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  color: #C9F5E1;
+  padding: 22px 24px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.95rem;
+  margin: 22px 0;
+  line-height: 1.6;
+}
+.lesson code { font-family: 'JetBrains Mono', monospace; }
+.lesson :not(pre) > code {
+  background: var(--green-dim);
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: var(--green);
+  font-size: 0.9em;
+}
+.lesson hr { border: none; border-top: 1px solid var(--border); margin: 3em 0; }
+
+/* ---------- Footer ---------- */
+footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  padding: 46px 0;
+  font-size: 0.9rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+footer a { color: var(--green); font-weight: 600; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  body { font-size: 18px; }
+  .hero { padding: 60px 0 76px 0; }
+  .hero h1 { font-size: 2.1rem; }
+  .hero p.lead { font-size: 1.1rem; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .rail-links { gap: 16px; }
+  h2 { font-size: 1.6rem; }
+  .lesson h2 { font-size: 1.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
