@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part 3: SQL — The Analytics Ladder</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="rail">
+  <div class="wrap">
+    <div class="rail-brand">TAL<span class="rung-mark">.LADDER</span></div>
+    <div class="rail-links">
+      <a href="../index.html">Meet Bolaji</a>
+      <a href="../community.html">The Community</a>
+      <a href="../mission.html">Our Mission</a>
+      <a href="../toc.html" class="active">Start Learning</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" style="padding: 44px 0;">
+  <div class="wrap">
+    <span class="eyebrow">Rung 3 of 5</span>
+    <h1 style="font-size: 2rem;">Part 3: SQL</h1>
+    <p class="lead">Read at your own pace. Work through each lessons exercise before moving on.</p>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap lesson">
+<h1 id="part-3-sql">Part 3: SQL</h1>
+<p><em>(The Analytics Ladder — Lesson Content)</em></p>
+<hr />
+<h2 id="lesson-1-introduction-to-sql">🗄️ Lesson 1: Introduction to
+SQL</h2>
+<p><strong>Let's start simple</strong> Imagine a library with millions
+of books. Excel is like organizing a small personal bookshelf — great
+for hundreds of rows. But when you have millions of rows, you need
+something bigger: a <strong>database</strong>. SQL (Structured Query
+Language) is how you "talk" to a database and ask it questions.</p>
+<p><strong>Key Ideas</strong> - <strong>Tables</strong>: data is stored
+in tables, just like Excel — rows and columns - <strong>Field
+naming</strong>: each column needs a clear, consistent name (e.g.,
+<code>customer_name</code>, not "Column1") - <strong>Data
+types</strong>: every column has a type — text, number, date — and SQL
+enforces this strictly - <strong>Writing Queries</strong>: a query is
+simply a question you ask the database, written in SQL - <strong>SQL
+"Flavours"</strong>: different databases (MySQL, PostgreSQL, SQL Server)
+speak slightly different dialects of SQL — like British English
+vs. American English. The core is the same.</p>
+<p><strong>A Simple Example</strong> The most basic SQL query looks like
+this:</p>
+<pre><code>SELECT customer_name, amount
+FROM sales
+WHERE amount &gt; 1000;</code></pre>
+<p>In plain English: "Show me the customer name and amount, from the
+sales table, but only where the amount is more than 1000."</p>
+<p><strong>🧠 Now You Try (Exercise)</strong> Without running any code
+yet, write out in plain English what this query would ask for:</p>
+<pre><code>SELECT product_name, price
+FROM products
+WHERE price &lt; 500;</code></pre>
+<p><strong>✅ Big Idea to Remember</strong> SQL queries always follow
+the same basic shape: <strong>SELECT</strong> (what you want to see)
+<strong>FROM</strong> (which table) <strong>WHERE</strong> (which
+conditions). Almost everything else you learn builds on this one
+pattern.</p>
+<hr />
+<h2 id="lesson-2-intermediate-sql">🛠️ Lesson 2: Intermediate SQL</h2>
+<p><strong>Let's start simple</strong> Now that you can write a basic
+query, let's talk about writing them <em>well</em> — clearly, correctly,
+and in a way that's easy to fix when something goes wrong.</p>
+<p><strong>Key Ideas</strong> - <strong>Querying a database</strong>:
+connecting to real data and running your questions against it -
+<strong>Query execution</strong>: SQL runs your query in a specific
+order behind the scenes (it doesn't read top to bottom like a story!) —
+understanding this helps you debug faster - <strong>Debugging
+SQL</strong>: reading error messages carefully, checking spelling of
+table/column names, and testing small pieces of your query at a time -
+<strong>SQL style</strong>: writing in capital letters for SQL keywords
+(<code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>) and
+lowercase for your own table/column names, with clear indentation — this
+makes queries much easier to read later</p>
+<p><strong>A Simple Example</strong> A messy, hard-to-read query:</p>
+<pre><code>select * from sales where amount&gt;1000 and region='Lagos'</code></pre>
+<p>The same query, written with good style:</p>
+<pre><code>SELECT *
+FROM sales
+WHERE amount &gt; 1000
+  AND region = 'Lagos';</code></pre>
+<p>Both do the exact same thing — but the second one is much easier for
+you (or anyone else) to read and fix later.</p>
+<p><strong>🧠 Now You Try (Exercise)</strong> Take the messy query above
+and try rewriting it in good style yourself, with capital keywords and
+clean spacing, before checking it against the example.</p>
+<p><strong>✅ Big Idea to Remember</strong> Good SQL isn't just about
+getting the right answer — it's about writing queries that you (and
+others) can still understand six months from now.</p>
+<hr />
+<h2 id="lesson-3-filtering-comparison">🔎 Lesson 3: Filtering &amp;
+Comparison</h2>
+<p><strong>Let's start simple</strong> Filtering is how you narrow down
+a huge table to just the rows you actually care about — like using a
+sieve to separate what you want from everything else.</p>
+<p><strong>Key Ideas</strong> - <strong>Comparison Operators</strong>:
+<code>=</code>, <code>&gt;</code>, <code>&lt;</code>,
+<code>&gt;=</code>, <code>&lt;=</code>, <code>!=</code> (not equal) -
+<strong>Filtering Numbers</strong>: <code>WHERE age &gt; 18</code> -
+<strong>Filtering Text</strong>: <code>WHERE country = 'Nigeria'</code>
+— text needs quotes! - <strong>NULL handling</strong>: <code>NULL</code>
+means "no value at all" — you can't use <code>= NULL</code>, you must
+use <code>WHERE column IS NULL</code> or <code>IS NOT NULL</code> -
+<strong>CASE Statements</strong>: SQL's version of an IF statement, for
+creating categories on the fly:</p>
+<pre><code>SELECT name,
+  CASE
+    WHEN score &gt;= 70 THEN 'A'
+    WHEN score &gt;= 50 THEN 'B'
+    ELSE 'F'
+  END AS grade
+FROM students;</code></pre>
+<p><strong>A Simple Example</strong> Finding all customers from Nigeria
+who spent more than ₦5,000, and haven't provided a phone number yet:</p>
+<pre><code>SELECT *
+FROM customers
+WHERE country = 'Nigeria'
+  AND amount_spent &gt; 5000
+  AND phone IS NULL;</code></pre>
+<p><strong>🧠 Now You Try (Exercise)</strong> Write a CASE statement
+that labels any score above 80 as "Excellent," scores 50-80 as "Good,"
+and anything below 50 as "Needs Improvement."</p>
+<p><strong>✅ Big Idea to Remember</strong> Filtering is where SQL
+starts to feel powerful — you can ask incredibly specific questions of
+huge tables in just a few lines.</p>
+<hr />
+<h2 id="lesson-4-summarizing-data">📊 Lesson 4: Summarizing Data</h2>
+<p><strong>Let's start simple</strong> Just like Excel's Pivot Tables,
+SQL has its own way of turning thousands of rows into a handful of
+meaningful summary numbers.</p>
+<p><strong>Key Ideas</strong> - <strong>Aggregate Functions</strong>:
+<code>COUNT()</code>, <code>SUM()</code>, <code>AVG()</code>,
+<code>MIN()</code>, <code>MAX()</code> - <strong>GROUP BY</strong>:
+groups rows that share a value, so you can summarize <em>per group</em>
+(e.g., total sales per region) - <strong>Summarizing Subsets</strong>:
+combining <code>WHERE</code> (filter first) with <code>GROUP BY</code>
+(then summarize) - <strong>Aliasing</strong>: renaming a column in your
+results using <code>AS</code>, e.g.,
+<code>SUM(amount) AS total_sales</code> - <strong>Sorting</strong>:
+<code>ORDER BY</code> — arranging your results, e.g., biggest to
+smallest</p>
+<p><strong>A Simple Example</strong> "What's the total sales per region,
+from highest to lowest?"</p>
+<pre><code>SELECT region, SUM(amount) AS total_sales
+FROM sales
+GROUP BY region
+ORDER BY total_sales DESC;</code></pre>
+<p><strong>🧠 Now You Try (Exercise)</strong> Write a query (on paper)
+that finds the average score per subject from a <code>students</code>
+table with columns <code>subject</code> and <code>score</code>, sorted
+from highest average to lowest.</p>
+<p><strong>✅ Big Idea to Remember</strong> Whenever you want an answer
+"per group" (per region, per subject, per customer), you're reaching for
+<code>GROUP BY</code> alongside an aggregate function like
+<code>SUM</code> or <code>AVG</code>.</p>
+<hr />
+<h2 id="lesson-5-fundamental-sql-joins">🔗 Lesson 5: Fundamental SQL —
+Joins</h2>
+<p><strong>Let's start simple</strong> Real databases rarely keep
+everything in one giant table — instead, information is spread across
+multiple related tables (customers in one table, their orders in
+another). A <strong>JOIN</strong> is how you combine them back together
+to answer a question that needs both.</p>
+<p><strong>Key Ideas</strong> - <strong>Defining relationships</strong>:
+tables are usually linked by a shared column, like
+<code>customer_id</code> - <strong>INNER JOIN</strong>: brings back only
+rows that match in both tables - <strong>Multiple Joins</strong>:
+combining 3 or more tables together in a single query - <strong>UNION /
+UNION ALL</strong>: stacks two tables' results on top of each other
+(instead of joining them side-by-side) — useful when combining similar
+data from two sources, like sales from 2024 and sales from 2025</p>
+<p><strong>A Simple Example</strong> Finding customer names alongside
+their orders (two separate tables, joined together):</p>
+<pre><code>SELECT customers.name, orders.amount
+FROM customers
+JOIN orders ON customers.customer_id = orders.customer_id;</code></pre>
+<p><strong>🧠 Now You Try (Exercise)</strong> Imagine two tables:
+<code>students</code> (student_id, name) and <code>scores</code>
+(student_id, subject, score). Write out in plain English how you'd join
+them to see each student's name next to their scores.</p>
+<p><strong>✅ Big Idea to Remember</strong> Joins are the heart of
+working with real databases — almost no useful business question can be
+answered from just one table alone.</p>
+<hr />
+<h2 id="lesson-6-subqueries-ctes">🪆 Lesson 6: Subqueries &amp;
+CTEs</h2>
+<p><strong>Let's start simple</strong> Sometimes, to answer one
+question, you first need the answer to a smaller question. A
+<strong>subquery</strong> is a query written inside another query — like
+a question inside a question.</p>
+<p><strong>Key Ideas</strong> - <strong>Subqueries</strong>: a query
+nested inside another query's <code>WHERE</code> or <code>SELECT</code>
+- <strong>Correlated Subqueries</strong>: a subquery that depends on the
+outer query, running once for every row - <strong>Nested
+Subqueries</strong>: subqueries inside subqueries - <strong>Common Table
+Expressions (CTEs)</strong>: a cleaner, more readable way to write
+complex queries, using <code>WITH</code> to name a temporary result you
+can reuse - <strong>CTE vs. Joins/Correlated Subqueries</strong>: CTEs
+are usually easier to read and debug for complex, multi-step logic</p>
+<p><strong>A Simple Example</strong> Finding customers who spent more
+than the average customer, using a subquery:</p>
+<pre><code>SELECT name, amount_spent
+FROM customers
+WHERE amount_spent &gt; (SELECT AVG(amount_spent) FROM customers);</code></pre>
+<p>The same idea, written more readably with a CTE:</p>
+<pre><code>WITH avg_spend AS (
+  SELECT AVG(amount_spent) AS avg_amount FROM customers
+)
+SELECT name, amount_spent
+FROM customers, avg_spend
+WHERE amount_spent &gt; avg_amount;</code></pre>
+<p><strong>🧠 Now You Try (Exercise)</strong> In plain English, explain
+what the subquery example above is doing, step by step — starting with
+the inner query first.</p>
+<p><strong>✅ Big Idea to Remember</strong> When a question needs an
+answer <em>within</em> an answer, reach for a subquery or CTE — and once
+your logic gets complex, CTEs almost always keep things more
+readable.</p>
+<hr />
+<h2 id="lesson-7-window-functions">🪟 Lesson 7: Window Functions</h2>
+<p><strong>Let's start simple</strong> Sometimes you want to compare
+each row to a group — like "rank each student's score within their own
+class" — without collapsing all the individual rows into one summary.
+This is exactly what <strong>window functions</strong> are built
+for.</p>
+<p><strong>Key Ideas</strong> - <strong>Ranking Functions</strong>:
+<code>RANK()</code>, <code>ROW_NUMBER()</code> — assigns a rank to each
+row - <strong>Sliding Window / Frames</strong>: calculations that look
+at a "window" of nearby rows (e.g., the last 7 days) - <strong>Moving
+Average</strong>: an average that updates as you move through the data —
+useful for smoothing out noisy trends - <strong>Paging</strong>:
+splitting results into pages, useful for showing "Top 10" style results
+- <strong>Pivoting</strong>: reshaping rows into columns (or vice versa)
+for reporting</p>
+<p><strong>A Simple Example</strong> Ranking students by score within
+each class:</p>
+<pre><code>SELECT name, class, score,
+  RANK() OVER (PARTITION BY class ORDER BY score DESC) AS class_rank
+FROM students;</code></pre>
+<p>This gives every student a rank — but <em>restarts the ranking</em>
+for each class, thanks to <code>PARTITION BY</code>.</p>
+<p><strong>🧠 Now You Try (Exercise)</strong> In plain English, describe
+what would change in the example above if you removed
+<code>PARTITION BY class</code> entirely.</p>
+<p><strong>✅ Big Idea to Remember</strong> Window functions let you
+compare each row to a group, without losing any of the individual rows —
+think of it as "GROUP BY, but keeping every row visible."</p>
+<hr />
+<h2 id="lesson-8-functions-for-manipulating-data">🔤 Lesson 8: Functions
+for Manipulating Data</h2>
+<p><strong>Let's start simple</strong> Just like Excel has text and date
+functions, SQL has its own toolbox for cleaning and reshaping messy data
+directly inside the database.</p>
+<p><strong>Key Ideas</strong> - <strong>Common Data Types</strong>:
+<code>INT</code> (whole numbers), <code>DECIMAL</code> (numbers with
+decimals), <code>VARCHAR</code> (text), <code>DATE</code> - <strong>Date
+&amp; Time Functions</strong>: retrieving the current timestamp
+(<code>NOW()</code> or <code>CURRENT_TIMESTAMP</code>), extracting parts
+of a date (<code>YEAR()</code>, <code>MONTH()</code>) - <strong>String
+Functions</strong>: changing text case (<code>UPPER()</code>,
+<code>LOWER()</code>), parsing string and character data
+(<code>SUBSTRING()</code>) - <strong>Working with Arrays</strong>: some
+databases let a single column hold a list of values, and searching
+within them - <strong>Numeric Functions</strong>: rounding, and using
+numeric data with summary functions like <code>SUM</code> and
+<code>AVG</code></p>
+<p><strong>A Simple Example</strong> Standardizing messy names to a
+consistent format:</p>
+<pre><code>SELECT UPPER(TRIM(customer_name)) AS clean_name
+FROM customers;</code></pre>
+<p>This removes extra spaces and makes every name uppercase, so "
+bolaji" and "Bolaji" both become "BOLAJI" — matching correctly instead
+of being treated as different values.</p>
+<p><strong>🧠 Now You Try (Exercise)</strong> Write a query (on paper)
+that extracts just the year from an <code>order_date</code> column, so
+you could later count how many orders happened per year.</p>
+<p><strong>✅ Big Idea to Remember</strong> SQL isn't just for
+retrieving data — it has a full toolbox for cleaning and reshaping messy
+text, dates, and numbers right inside the query itself.</p>
+<hr />
+<h2 id="lesson-9-creating-and-managing-tables">🏗️ Lesson 9: Creating and
+Managing Tables</h2>
+<p><strong>Let's start simple</strong> So far, we've focused on
+<em>asking questions</em> of existing data. But SQL can also <em>build
+and manage</em> the tables themselves — this is where you go from "user
+of a database" to someone who truly understands how it's built.</p>
+<p><strong>Key Ideas</strong> - <strong>CREATE TABLE</strong>: defines a
+brand new table and its columns - <strong>Column Constraints</strong>:
+rules on a column, like "this can never be empty"
+(<code>NOT NULL</code>) or "this must be unique" (<code>UNIQUE</code>) -
+<strong>The Key to a Database</strong>: a <code>PRIMARY KEY</code>
+uniquely identifies each row — like an ID number no two people share -
+<strong>INSERT INTO</strong>: adds new rows of data -
+<strong>UPDATE</strong>: changes existing data - <strong>ALTER
+TABLE</strong>: changes a table's structure (like adding a new column) -
+<strong>DELETE vs. DROP TABLE</strong>: <code>DELETE</code> removes
+specific rows; <code>DROP TABLE</code> removes the entire table
+completely - <strong>Temporary Tables</strong>: tables that exist only
+for the current session, useful for breaking a complex problem into
+smaller steps</p>
+<p><strong>A Simple Example</strong> Creating a simple table for
+students:</p>
+<pre><code>CREATE TABLE students (
+  student_id INT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  score DECIMAL(5,2)
+);
+
+INSERT INTO students VALUES (1, 'Bolaji', 85.5);
+
+UPDATE students SET score = 90 WHERE student_id = 1;</code></pre>
+<p><strong>🧠 Now You Try (Exercise)</strong> On paper, design a simple
+table for tracking books in a small library: what columns would you
+need, and which one would you make the <code>PRIMARY KEY</code>?</p>
+<p><strong>✅ Big Idea to Remember</strong> Every table you've ever
+queried started with a <code>CREATE TABLE</code> statement, designed
+with intention — good table design makes every future query easier.</p>
+<hr />
+<p><strong>🎉 You've completed Part 3: SQL!</strong> Next up: bringing
+your data to life visually with <strong>Power BI</strong>.</p>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="wrap" style="text-align:center;">
+    <h2>Finished Part 3?</h2>
+    <p>Next up: Power BI (Part 4).</p>
+    <a href="../toc.html" class="btn">Back to Table of Content →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    &copy; 2026 The Analytics Ladder · Built by <a href="https://komobolaji20-droid.github.io" target="_blank" rel="noopener">Bolaji (#TeacherTurnedAnalyst)</a>
+  </div>
+</footer>
+
+</body>
+</html>
