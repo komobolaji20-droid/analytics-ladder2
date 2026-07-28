@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Part 5: Python : The Analytics Ladder</title>
+<title>Part 5: Python — The Analytics Ladder</title>
 <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
   <div class="wrap">
     <div class="rail-brand">TAL<span class="rung-mark">.LADDER</span></div>
     <div class="rail-links">
-      <a href="../index.html">Meet Omobolaji</a>
+      <a href="../index.html">Meet Bolaji</a>
       <a href="../community.html">The Community</a>
       <a href="../mission.html">Our Mission</a>
       <a href="../toc.html" class="active">Start Learning</a>
@@ -24,338 +24,366 @@
   <div class="wrap">
     <span class="eyebrow">Rung 5 of 5</span>
     <h1 style="font-size: 2rem;">Part 5: Python</h1>
-    <p class="lead">Read at your own pace. Work through each lessons exercise before moving on.</p>
+    <p class="lead">10 lessons, closing the loop on the same snack shop data. Read at your own pace.</p>
   </div>
 </header>
 
 <section class="block">
   <div class="wrap lesson">
 <h1 id="part-5-python">Part 5: Python</h1>
-<p><em>(The Analytics Ladder : Lesson Content)</em></p>
+<p><em>(The Analytics Ladder — Lesson Content)</em></p>
 <hr />
-<h2 id="lesson-1-python-fundamentals"> Lesson 1: Python
-Fundamentals</h2>
-<p><strong>Let's start simple</strong> Python is a programming language
- a way of giving a computer clear, step-by-step instructions using text
-instead of clicking buttons. Unlike Excel or Power BI, there's no menu
-to click; you write exactly what you want, and Python does it.</p>
-<p><strong>Key Ideas</strong> - <strong>Variables</strong>: a labeled
-box for storing information, e.g., <code>age = 25</code> - <strong>Data
-types</strong>: numbers (<code>int</code>, <code>float</code>), text
-(<code>str</code>), and True/False values (<code>bool</code>) -
-<strong>Operators</strong>: <code>+</code>, <code>-</code>,
-<code>*</code>, <code>/</code> for maths; <code>==</code>,
-<code>&gt;</code>, <code>&lt;</code> for comparisons -
-<strong>Conditionals</strong>:
-<code>if</code>/<code>elif</code>/<code>else</code>  making decisions,
-just like Excel's <code>IF</code> - <strong>Loops</strong>:
-<code>for</code> and <code>while</code> repeating an action
-automatically, without copy-pasting code - <strong>Functions</strong>: a
-reusable block of instructions you can call by name, instead of
-rewriting the same steps every time - <strong>Lists, Tuples,
-Dictionaries</strong>: different ways of storing groups of information
-together</p>
-<p><strong>A Simple Example</strong></p>
-<pre><code>age = 15
-if age &gt;= 18:
-    print("You can vote")
+<h2 id="lesson-1-python-fundamentals">Lesson 1: Python Fundamentals</h2>
+<p>Python is a programming language, a way of giving a computer clear,
+step-by-step instructions using text instead of clicking buttons.
+There's no menu to click. You write exactly what you want, and Python
+does it.</p>
+<p>A variable is a labeled box for storing information, like
+<code>price = 200</code>. Data types include numbers, text, and True or
+False values. Operators handle maths and comparisons. Conditionals,
+<code>if</code>, <code>elif</code>, <code>else</code>, make decisions,
+the same job Excel's IF and SQL's CASE did. Loops repeat an action
+automatically. Functions are reusable blocks of instructions you can
+call by name.</p>
+<p>Let's write our first real check on the shop. Remember Meat Pie's
+"Needs attention" flag from SQL's CASE statement back in Part 3?</p>
+<pre><code>units_sold = 8
+if units_sold &gt;= 15:
+    print("Strong seller")
+elif units_sold &gt;= 10:
+    print("Steady seller")
 else:
-    print("Not yet old enough to vote")</code></pre>
-<p>This checks the value stored in <code>age</code>, and prints a
-different message depending on the answer — exactly like an
-<code>IF</code> formula in Excel, but far more flexible.</p>
-<p><strong> Now You Try (Exercise)</strong> Write (on paper, or in a
-notebook if you have Python installed) a small piece of code using a
-<code>for</code> loop that prints the numbers 1 to 5, one per line.</p>
-<p><strong> Big Idea to Remember</strong> Every single Python skill
-you'll ever learn is built from just a handful of core ideas: variables,
-conditions, loops, and functions. Master these, and everything else
-becomes easier to pick up.</p>
+    print("Needs attention")</code></pre>
+<p>Run this with Meat Pie's original 8, and Python prints "Needs
+attention," the exact same result the SQL CASE statement gave you, just
+written in a different language.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Change <code>units_sold</code> to 20, Coke's number, and work out by
+hand which branch of the if/elif/else would print.</li>
+<li>Write a small loop (on paper, or in a notebook if you have Python
+installed) that prints "Strong seller," "Steady seller," "Steady
+seller," and "Needs attention" for the four values 15, 20, 12, 8, one
+per line, without repeating the if/elif/else block four separate
+times.</li>
+<li>Compare this Python if/elif/else to the SQL CASE statement from Part
+3, Lesson 3. What's structurally the same about them?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Every Python skill you'll learn builds from a handful of core ideas:
+variables, conditions, loops, and functions. You already used the same
+logic in Excel and SQL. Python just writes it differently.</p>
 <hr />
-<h2 id="lesson-2-working-with-data-numpy-pandas"> Lesson 2: Working
-with Data — NumPy &amp; Pandas</h2>
-<p><strong>Let's start simple</strong> Plain Python is great, but it
-wasn't built specifically for data. Two add-on libraries 
-<strong>NumPy</strong> and <strong>Pandas</strong>  turn Python into a
-serious data analysis tool, similar to how Power Query turns Excel into
-something much more powerful.</p>
-<p><strong>Key Ideas</strong> - <strong>Libraries</strong>: pre-written
-code you can "borrow" using <code>import</code>, instead of writing
-everything from scratch - <strong>NumPy</strong>: handles fast maths on
-lists of numbers, called "arrays" - <strong>Pandas</strong>: the single
-most important library for a data analyst introduces the
-<strong>DataFrame</strong>, which is basically a spreadsheet living
-inside Python - <strong>Reading Data</strong>: Pandas can read CSV,
-Excel, SQL, and JSON files directly into a DataFrame with one line of
-code</p>
-<p><strong>A Simple Example</strong></p>
+<h2 id="lesson-2-working-with-data-numpy-and-pandas">Lesson 2: Working
+with Data, NumPy and Pandas</h2>
+<p>Plain Python is great, but it wasn't built specifically for data. Two
+add-on libraries, NumPy and Pandas, turn Python into a serious data
+analysis tool. Pandas introduces the DataFrame, essentially a
+spreadsheet living inside Python, and it can read CSV, Excel, or SQL
+data directly with one line of code.</p>
+<p>Let's load our snack shop into Python properly:</p>
 <pre><code>import pandas as pd
 
-df = pd.read_csv("sales.csv")
-print(df.head())</code></pre>
-<p>This reads an entire spreadsheet-like file into Python and shows you
-the first 5 rows — just like opening a file in Excel, but now you can
-control it entirely with code.</p>
-<p><strong> Now You Try (Exercise)</strong> If you have Python
-installed, try installing pandas (<code>pip install pandas</code>) and
-running the example above using any small CSV file you have. If not yet
-installed, write down what you think <code>df.head()</code> does, based
-on the explanation above.</p>
-<p><strong> Big Idea to Remember</strong> A Pandas DataFrame is the
-Python equivalent of an Excel spreadsheet or a SQL table  almost
-everything you already know from Excel and SQL has a matching idea in
-Pandas.</p>
+data = {
+    "name": ["Chin Chin", "Coke", "Meat Pie", "Fanta"],
+    "type": ["Snack", "Drink", "Snack", "Drink"],
+    "price": [200, 150, 300, 150],
+    "units_sold": [15, 20, 8, 12]
+}
+df = pd.DataFrame(data)
+print(df)</code></pre>
+<p>This builds the exact same four-row table we've used since Part 1,
+now as a Pandas DataFrame, ready for everything that comes next in this
+part.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Run (or trace through by hand) <code>df.head()</code> on this
+DataFrame. How many rows would it show, given the table only has
+four?</li>
+<li>Write the line of code that would calculate revenue for each row
+(price times units_sold), the same calculation you first did in Excel's
+Lesson 2.</li>
+<li>If you had our shop's data in a CSV file instead of typed directly
+into Python, what one line of code would load it into a DataFrame called
+df?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>A Pandas DataFrame is the Python equivalent of an Excel spreadsheet
+or a SQL table. Everything you already know from Parts 2 and 3 has a
+matching idea here, just written in code instead of formulas or
+queries.</p>
 <hr />
-<h2 id="lesson-3-data-cleaning-preparation-with-pandas">Lesson 3:
-Data Cleaning &amp; Preparation with Pandas</h2>
-<p><strong>Let's start simple</strong> Just like in Excel and Power
-Query, real data almost always needs cleaning before you can trust it.
-Pandas has powerful, fast tools for doing this cleaning with just a few
-lines of code.</p>
-<p><strong>Key Ideas</strong> - <code>df.info()</code> and
-<code>df.describe()</code>  quick overviews of your data's structure
-and statistics - <strong>Handling missing values</strong>:
-<code>df.dropna()</code> (remove missing rows) or
-<code>df.fillna(value)</code> (fill them in) - <strong>Removing
-duplicates</strong>: <code>df.drop_duplicates()</code> - <strong>Data
-type conversion</strong>: making sure a "date" column is actually
-recognized as a date - <strong>Filtering and sorting</strong>: selecting
-only the rows you need, and arranging them - <strong>Handling
-outliers</strong>: spotting unusually extreme values that might be
-mistakes</p>
-<p><strong>A Simple Example</strong></p>
-<pre><code>df = df.drop_duplicates()
-df['amount'] = df['amount'].fillna(0)
-df = df[df['amount'] &gt; 0]</code></pre>
-<p>This removes duplicate rows, fills any missing amounts with 0, then
-keeps only rows where the amount is actually positive  three cleaning
-steps in three lines.</p>
-<p><strong> Now You Try (Exercise)</strong> In plain English, describe
-what would happen to your data if you ran <code>df.dropna()</code>
-instead of <code>df.fillna(0)</code> in the example above  how would
-the result be different?</p>
-<p><strong> Big Idea to Remember</strong> "Garbage in, garbage out"
-applies just as much in Python as it did in Excel  always clean and
-inspect your data before analyzing it.</p>
+<h2 id="lesson-3-data-cleaning-and-preparation-with-pandas">Lesson 3:
+Data Cleaning and Preparation with Pandas</h2>
+<p>Just like in Excel and SQL, real data almost always needs cleaning
+before you can trust it. Pandas handles this with a few lines of
+code.</p>
+<p><code>df.info()</code> and <code>df.describe()</code> give quick
+overviews. <code>df.dropna()</code> removes missing rows,
+<code>df.fillna(value)</code> fills them in instead.
+<code>df.drop_duplicates()</code> removes duplicate rows. And string
+methods handle the same messy-text problem we've now fixed three times,
+in Excel with TRIM and PROPER, and in SQL with TRIM and UPPER.</p>
+<pre><code>df["name"] = df["name"].str.strip().str.title()</code></pre>
+<p>This strips extra spaces and capitalizes each word, so " meat pie"
+and "Meat Pie" both become "Meat Pie," the exact same fix, the third
+time, now in Pandas.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>If our shop's <code>units_sold</code> column had a missing value for
+one row, would <code>df.dropna()</code> or <code>df.fillna(0)</code> be
+more appropriate here? Explain your reasoning.</li>
+<li>Write the line of code that would remove exact duplicate rows from
+our DataFrame.</li>
+<li>Compare <code>df["name"].str.strip().str.title()</code> to
+<code>PROPER(TRIM(A2))</code> from Excel and
+<code>UPPER(TRIM(name))</code> from SQL. All three solve the same
+problem; what's different about how each tool expresses it?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Garbage in, garbage out applies just as much in Python as it did in
+Excel and SQL. You've now fixed the exact same "Meat Pie" text problem
+three separate times, in three different tools, which is exactly the
+kind of pattern-recognition that makes you a stronger analyst.</p>
 <hr />
-<h2 id="lesson-4-data-transformation"> Lesson 4: Data
-Transformation</h2>
-<p><strong>Let's start simple</strong> Once your data is clean, you'll
-often need to reshape it select specific parts, create new columns,
-combine multiple tables, or summarize it by group. This is called data
-transformation.</p>
-<p><strong>Key Ideas</strong> - <strong>Selecting and Indexing</strong>:
-<code>.loc[]</code> (select by label) and <code>.iloc[]</code> (select
-by position) - <strong>Creating new columns</strong>:
-<code>df['profit'] = df['revenue'] - df['cost']</code> - <strong>GroupBy
-and Aggregation</strong>: Pandas' version of SQL's <code>GROUP BY</code>
-- <strong>Merging/Joining</strong>: combining two DataFrames together,
-just like a SQL join - <strong>Pivot Tables in Pandas</strong>: yes,
-Pandas can build pivot tables too! - <strong>Applying
-functions</strong>: using <code>.apply()</code> with a custom function
-(often a <code>lambda</code>) to transform every row</p>
-<p><strong>A Simple Example</strong></p>
-<pre><code>sales_by_region = df.groupby('region')['amount'].sum()
-print(sales_by_region)</code></pre>
-<p>This is the Pandas equivalent of the SQL query
-<code>SELECT region, SUM(amount) FROM sales GROUP BY region</code> —
-same question, same answer, different tool.</p>
-<p><strong> Now You Try (Exercise)</strong> Write out (in plain
-English) how you'd use <code>groupby</code> to find the <em>average</em>
-score per subject, instead of the <em>sum</em> of sales per region.</p>
-<p><strong> Big Idea to Remember</strong> By this point, notice a
-pattern: Excel Pivot Tables, SQL's <code>GROUP BY</code>, and Pandas'
-<code>groupby()</code> are really all doing the exact same job 
-summarizing data by category. Different tools, same underlying idea.</p>
+<h2 id="lesson-4-data-transformation">Lesson 4: Data Transformation</h2>
+<p>Once your data is clean, you often need to reshape it: select
+specific parts, create new columns, combine tables, or summarize by
+group.</p>
+<p><code>.loc[]</code> selects by label, <code>.iloc[]</code> by
+position. You can create a new column directly, like
+<code>df["revenue"] = df["price"] * df["units_sold"]</code>.
+<code>groupby</code> is Pandas' version of SQL's GROUP BY. And merging
+two DataFrames together works like a SQL join.</p>
+<p>Let's answer the same question three tools have now answered: total
+revenue by type.</p>
+<pre><code>df["revenue"] = df["price"] * df["units_sold"]
+revenue_by_type = df.groupby("type")["revenue"].sum()
+print(revenue_by_type)</code></pre>
+<p>This returns Drink at ₦4,800 (150×20 + 150×12) and Snack at ₦4,500
+(200×15 + 300×8, using the original 8 units before correction), the same
+style of answer the Pivot Table gave in Excel and GROUP BY gave in
+SQL.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Write the groupby line that would find the average price per type
+instead of total revenue.</li>
+<li>If you had a separate <code>sales</code> DataFrame like the one we
+built in SQL's Lesson 5, what Pandas function would you use to combine
+it with this <code>snacks</code> DataFrame, the same way JOIN did in
+SQL?</li>
+<li>Compare this groupby result to the Pivot Table from Excel and the
+GROUP BY query from SQL. Is the underlying logic the same across all
+three, even though the code looks different?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Excel Pivot Tables, SQL's GROUP BY, and Pandas' groupby are all doing
+the exact same job: summarizing data by category. Different tools,
+identical underlying idea, which is the whole throughline of this
+course.</p>
 <hr />
-<h2 id="lesson-5-exploratory-data-analysis-eda-in-python"> Lesson 5:
-Exploratory Data Analysis (EDA) in Python</h2>
-<p><strong>Let's start simple</strong> Just like in Excel, before
-drawing conclusions, you explore your data first. Python makes this
-exploration fast and repeatable, especially for much larger datasets
-than Excel can comfortably handle.</p>
-<p><strong>Key Ideas</strong> - <strong>Descriptive statistics</strong>:
-<code>df.describe()</code> gives you count, mean, min, max, and more,
-for every numeric column at once - <strong>Correlation
-analysis</strong>: <code>df.corr()</code> — checks whether two numbers
-tend to move together (e.g., do more study hours relate to higher
-scores?) - <strong>Identifying patterns and trends</strong>: grouping
-and sorting to spot what stands out - <strong>Working with categorical
-data</strong>: <code>df['column'].value_counts()</code> counts how
-often each category appears</p>
-<p><strong>A Simple Example</strong></p>
-<pre><code>print(df['region'].value_counts())
-print(df[['amount', 'quantity']].corr())</code></pre>
-<p>The first line shows how many sales came from each region. The second
-checks whether higher quantities tend to relate to higher amounts  both
-in two lines of code.</p>
-<p><strong> Now You Try (Exercise)</strong> If you had a dataset of
-students with "hours studied" and "exam score," what result would you
-expect from <code>df[['hours_studied', 'score']].corr()</code> a
-strong positive relationship, no relationship, or a negative one?
-Why?</p>
-<p><strong> Big Idea to Remember</strong> EDA in Python follows the
-exact same mindset as EDA in Excel  you're just doing it faster, and on
-much bigger datasets.</p>
+<h2 id="lesson-5-exploratory-data-analysis-in-python">Lesson 5:
+Exploratory Data Analysis in Python</h2>
+<p>Just like in Excel and SQL, you explore your data before drawing
+conclusions. Python makes this fast and repeatable, especially on
+datasets far larger than our four-row shop.</p>
+<p><code>df.describe()</code> gives count, mean, min, and max for every
+numeric column at once. <code>df.corr()</code> checks whether two
+numbers move together. <code>df["column"].value_counts()</code> counts
+how often each category appears.</p>
+<pre><code>print(df["type"].value_counts())
+print(df["units_sold"].describe())</code></pre>
+<p>The first line shows 2 Snacks and 2 Drinks. The second gives you the
+same average, min, and max we calculated by hand back in Part 1, Lesson
+7, and again with Excel's AVERAGE, MAX, and MIN functions in Part 2.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Run <code>df["units_sold"].describe()</code> mentally using our four
+values, 15, 20, 8, 12. What would the mean come out to?</li>
+<li>If a fifth snack was added with a units_sold of 200 by mistake
+(meant to be 20), which part of <code>describe()</code>'s output would
+immediately look suspicious?</li>
+<li>Compare this EDA step to the manual statistics work from Part 1,
+Lesson 7. What's the actual advantage of doing it in Python instead of
+by hand, given we only have four rows here?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>EDA in Python follows the exact same mindset as EDA in Part 1 and
+Excel. You're just doing it faster, and the real advantage shows up once
+your dataset grows far past four rows.</p>
 <hr />
-<h2 id="lesson-6-data-visualization-in-python"> Lesson 6: Data
+<h2 id="lesson-6-data-visualization-in-python">Lesson 6: Data
 Visualization in Python</h2>
-<p><strong>Let's start simple</strong> Python has its own charting tools
- and just like Excel's charts, they turn numbers into pictures. The two
-most popular libraries are <strong>Matplotlib</strong> (the foundation)
-and <strong>Seaborn</strong> (built on top of it, with prettier
-defaults).</p>
-<p><strong>Key Ideas</strong> - <strong>Matplotlib</strong>: the
-original, flexible charting library - <strong>Seaborn</strong>: makes
-attractive statistical charts with less code - <strong>Common chart
-types</strong>: bar, line, histogram, scatter, box plot same concepts
-you learned in Excel and Part 1 - <strong>Customizing charts</strong>:
-titles, labels, colors, sizing - <strong>Plotly</strong> (overview): for
-interactive charts you can hover and zoom into, often used for
-dashboards</p>
-<p><strong>A Simple Example</strong></p>
+<p>Python has its own charting tools. The two most common are
+Matplotlib, the foundation, and Seaborn, built on top of it with nicer
+defaults.</p>
 <pre><code>import seaborn as sns
 import matplotlib.pyplot as plt
 
-sns.barplot(data=df, x='region', y='amount')
-plt.title("Total Sales by Region")
+sns.barplot(data=df, x="name", y="units_sold")
+plt.title("Snack Shop: Units Sold")
 plt.show()</code></pre>
-<p>Three lines of code, and you have a labeled bar chart the same
-chart you might've built by clicking "Insert Chart" in Excel, but now
-fully controlled by code (and easy to repeat automatically).</p>
-<p><strong> Now You Try (Exercise)</strong> Looking at the code above,
-which part do you think controls what appears on the x-axis, and which
-part controls the y-axis?</p>
-<p><strong> Big Idea to Remember</strong> Visualization principles
-don't change based on the tool  a bad chart is still a bad chart
-whether it's built in Excel, Power BI, or Python. The tool just changes
-<em>how</em> you build it.</p>
+<p>Three lines of code, and you get the same bar chart you first built
+by hand in Part 1, then in Excel's Insert menu in Part 2. Coke's bar is
+still the tallest, Meat Pie's still the shortest. The chart hasn't
+changed. Only the tool building it has.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Which part of the code above controls what appears on the x-axis,
+and which controls the y-axis?</li>
+<li>If you wanted a line chart instead of a bar chart, tracking units
+sold across several weeks rather than comparing four snacks at once,
+which function name from Seaborn would you look for instead of
+<code>barplot</code>?</li>
+<li>Across Part 1's hand-drawn sketch, Excel's Column Chart, and this
+Seaborn bar chart, has the actual design principle from Part 1, Lesson 5
+changed at all? What has changed is just the tool.</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>A bad chart is still a bad chart whether it's built by hand, in
+Excel, or in Python. The tool only changes how you build it, not whether
+the underlying visualization principles from Part 1 still apply.</p>
 <hr />
-<h2 id="lesson-7-introduction-to-statistics-with-python"> Lesson 7:
+<h2 id="lesson-7-introduction-to-statistics-with-python">Lesson 7:
 Introduction to Statistics with Python</h2>
-<p><strong>Let's start simple</strong> Remember statistics from Part 1 
-averages, medians, and spread? Python lets you go a bit deeper, checking
-not just "what happened" but "is this difference actually meaningful, or
-just random chance?"</p>
-<p><strong>Key Ideas</strong> - <strong>Probability
-distributions</strong> (overview): patterns that describe how data tends
-to be spread out (e.g., the classic "bell curve") - <strong>Hypothesis
-testing</strong> (overview): a formal way of checking if a difference
-you observe (e.g., "Group A performed better than Group B") is likely
-real, or could just be random luck - <strong>SciPy</strong>: a Python
-library with ready-made statistical tests, so you don't have to build
-the maths from scratch</p>
-<p><strong>A Simple Example</strong> Imagine two groups of students used
-different study methods, and Group A scored higher on average. A
-hypothesis test (using SciPy) can tell you whether that difference is
-likely a real effect of the study method, or could easily have happened
-by chance with such a small group.</p>
-<p><strong> Now You Try (Exercise)</strong> Think of two groups you
-could compare in real life (e.g., two football teams' average goals, two
-classes' average test scores). Write down what question a hypothesis
-test could help answer about them.</p>
-<p><strong> Big Idea to Remember</strong> Just because one number is
-bigger than another doesn't automatically mean the difference is "real"
-statistics helps you tell the difference between an actual pattern and
-random noise.</p>
+<p>Remember statistics from Part 1: averages, medians, spread? Python
+lets you go a step further, checking not just what happened, but whether
+a difference is actually meaningful or just chance.</p>
+<p>SciPy is a library with ready-made statistical tests. A hypothesis
+test is a formal way of checking whether an observed difference, like
+one group performing better than another, is likely real.</p>
+<p>Imagine the shop owner tries a new pricing strategy for two weeks,
+and average daily units_sold rises from 13.75 (our original average) to
+16. A hypothesis test could help answer: is that rise a real effect of
+the new pricing, or could it just as easily be random day-to-day
+variation with such a small sample?</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Using our original four units_sold values, 15, 20, 8, 12, which
+averaged to 13.75, why might a rise to 16 over just two weeks not be
+enough evidence on its own to declare the new pricing a success?</li>
+<li>What additional information (beyond just the average) would help you
+judge whether that rise was meaningful?</li>
+<li>Think of another two groups you could compare from something in your
+own life. What question would a hypothesis test help answer there?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Just because one number is bigger than another doesn't automatically
+mean the difference is real. Statistics helps you tell an actual pattern
+apart from random noise, especially with a dataset as small as our
+shop's four items.</p>
 <hr />
-<h2 id="lesson-8-working-with-databases-and-apis">  Lesson 8: Working
-with Databases and APIs</h2>
-<p><strong>Let's start simple</strong> So far we've mostly worked with
-files sitting on your computer. But real-world data often lives
-elsewhere  inside a company's database, or out on the internet through
-something called an API.</p>
-<p><strong>Key Ideas</strong> - <strong>Connecting Python to SQL
-databases</strong>: yes, you can run your Part 3 SQL knowledge directly
-from Python! - <strong>Running SQL queries from Python</strong>: using a
-library like <code>sqlite3</code> or <code>sqlalchemy</code> -
-<strong>APIs</strong>: a way for one piece of software to request data
-from another over the internet (e.g., pulling live weather data) -
-<strong>The <code>requests</code> library</strong>: Python's tool for
-fetching data from an API - <strong>JSON</strong>: a common format APIs
-use to send data back  looks like nested dictionaries</p>
-<p><strong>A Simple Example</strong></p>
-<pre><code>import requests
-
-response = requests.get("https://api.example.com/weather")
-data = response.json()
-print(data['temperature'])</code></pre>
-<p>This fetches live data from a website's API and reads a specific
-value out of the response  a technique used constantly in real-world
-data analyst jobs.</p>
-<p><strong> Now You Try (Exercise)</strong> Think of one piece of live
-data you'd love to pull automatically (weather, football scores,
-currency exchange rates). Write down why an API would be more useful for
-this than manually checking a website every day.</p>
-<p><strong> Big Idea to Remember</strong> A data analyst's skillset
-isn't limited to files someone hands you  SQL and APIs let you go get
-the data yourself, directly from its source.</p>
+<h2 id="lesson-8-working-with-databases-and-apis">Lesson 8: Working with
+Databases and APIs</h2>
+<p>So far we've mostly worked with data typed directly into Python.
+Real-world data often lives elsewhere, inside a company's database, or
+out on the internet through an API.</p>
+<p>You can connect Python directly to SQL databases and run the exact
+queries you wrote in Part 3 from inside Python. An API lets one piece of
+software request data from another over the internet, and the
+<code>requests</code> library is Python's tool for fetching it.</p>
+<pre><code>import sqlite3
+conn = sqlite3.connect("shop.db")
+result = pd.read_sql("SELECT * FROM snacks WHERE units_sold &gt; 10", conn)
+print(result)</code></pre>
+<p>That's the exact SQL query from Part 3, Lesson 1, run from inside
+Python instead of a SQL client, returning the same Chin Chin, Coke, and
+Fanta rows.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Looking at the query inside <code>pd.read_sql</code>, which rows
+from our snacks table would this return, and which would it leave
+out?</li>
+<li>If you wanted to pull the average price per type using this
+connection, would you write that logic in SQL inside the query string,
+or in Pandas after loading the data? Is there a reason to prefer one
+over the other?</li>
+<li>Think of one piece of live data (weather, exchange rates, sports
+scores) you'd want to pull automatically. Why would an API suit that
+better than typing the data in by hand, the way we did for our snack
+shop?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>A data analyst's skillset isn't limited to files someone hands you.
+SQL and APIs, both usable directly from Python, let you go get the data
+yourself, straight from its source.</p>
 <hr />
-<h2 id="lesson-9-automating-and-reporting"> Lesson 9: Automating and
+<h2 id="lesson-9-automating-and-reporting">Lesson 9: Automating and
 Reporting</h2>
-<p><strong>Let's start simple</strong> Remember how Power Query could
-"remember" your cleaning steps and repeat them automatically? Python can
-do the same thing but with even more control, for tasks across your
-entire workflow.</p>
-<p><strong>Key Ideas</strong> - <strong>Writing reusable
-scripts</strong>: turning a series of manual steps into one script you
-can run anytime - <strong>Automating repetitive tasks</strong>: e.g.,
-automatically cleaning and combining files every week 
-<strong>Exporting results</strong>: saving your cleaned data or charts
-to Excel, CSV, or PDF, ready to share</p>
-<p><strong>A Simple Example</strong></p>
-<pre><code>df_clean = df.drop_duplicates().dropna()
-df_clean.to_excel("cleaned_report.xlsx", index=False)</code></pre>
-<p>Two lines that clean your data and immediately save the result as a
-ready-to-share Excel file a task that once took 20 minutes of manual
-clicking now runs in under a second.</p>
-<p><strong> Now You Try (Exercise)</strong> Think of a task you (or
-your Ladder members) do repeatedly by hand every week. Write down what
-the first step of "automating" that task with a script might look
-like.</p>
-<p><strong> Big Idea to Remember</strong> The real power of Python
-isn't just analysis it's turning any repeatable task into something
-that runs itself, freeing you to spend time on the thinking work instead
-of the clicking work.</p>
+<p>Remember how Power Query in Excel and Power BI could remember your
+cleaning steps and repeat them automatically? Python does the same
+thing, with even more control, across your whole workflow.</p>
+<p>You can turn a series of manual steps into a script you run anytime,
+and export results straight to Excel, CSV, or PDF.</p>
+<pre><code>df["name"] = df["name"].str.strip().str.title()
+df["revenue"] = df["price"] * df["units_sold"]
+df.to_excel("shop_report.xlsx", index=False)</code></pre>
+<p>Three lines: clean the names the way we've now done in three tools,
+calculate revenue, and save a ready-to-share Excel file, all in under a
+second, a task that would otherwise mean manually retyping formulas
+every time new sales data arrived.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>If the shop owner sent you a new sales file every single week, what
+would change about the three lines above from one week to the next, if
+anything?</li>
+<li>Where in this three-line script would you add a step to remove
+duplicate rows, and why does the order matter?</li>
+<li>Compare this "clean once, run forever" script to Power Query's
+Applied Steps from Part 4. What's the same about the underlying
+idea?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>The real power of Python isn't just analysis. It's turning any
+repeatable task into something that runs itself, the same automation
+instinct you first met with Power Query, now with full control over
+every step.</p>
 <hr />
-<h2 id="lesson-10-version-control-and-portfolio-readiness"> Lesson 10:
+<h2 id="lesson-10-version-control-and-portfolio-readiness">Lesson 10:
 Version Control and Portfolio Readiness</h2>
-<p><strong>Let's start simple</strong> We covered GitHub back in Part 1
-now let's apply it specifically to Python projects, since this is
-where most of your strongest portfolio pieces will come from.</p>
-<p><strong>Key Ideas</strong> - <strong>Using Git and GitHub with Python
-projects</strong>: saving and sharing your code, notebooks, and results
-- <strong>Structuring a project</strong>: a clear folder structure
-(e.g., a <code>data/</code> folder, a <code>notebooks/</code> folder, a
-<code>README.md</code> file) makes your project easy for anyone to
-understand - <strong>Publishing to GitHub</strong>: making sure your
-final project — code, explanation, and results  is visible and
-understandable to a stranger scrolling through your profile</p>
-<p><strong>A Simple Example</strong> A well-structured Python project on
-GitHub might look like:</p>
-<pre><code>sales-analysis-project/
+<p>We covered GitHub back in Part 1. Now let's apply it specifically to
+a Python project, since this is where your strongest portfolio piece is
+likely to come from.</p>
+<p>A clear folder structure, a data folder, a notebooks folder, and a
+README file, makes a project easy for anyone to understand. Publishing
+means the code, explanation, and results are visible to a stranger
+scrolling through your profile.</p>
+<p>Here's what a finished version of our own snack shop project might
+look like on GitHub:</p>
+<pre><code>snack-shop-analysis/
 ├── data/
-│   └── sales.csv
+│   └── snacks.csv
 ├── notebooks/
 │   └── analysis.ipynb
 ├── README.md</code></pre>
-<p>The README explains, in plain language, what the project does, what
-question it answers, and what you found exactly like the README lesson
-from Part 1, but now for a real, finished Python project.</p>
-<p><strong> Now You Try (Exercise)</strong> Look back at every project
-idea you've thought about while working through this course. Pick one,
-and write a 3-sentence README description for it, as if you were about
-to publish it on GitHub today.</p>
-<p><strong> Big Idea to Remember</strong> This is the finish line 
-and also the beginning. A polished, published, well-explained project is
-exactly what closes the gap between "I learned data analytics" and "I
-can prove I can do this job."</p>
+<p>The README would explain, in plain language, exactly what we did
+across this entire course: cleaned the data, explored it, modeled it,
+visualized it, and found that Drinks outsold Snacks 32 to 23 units, with
+Meat Pie needing attention. The same finding, first spotted in Part 1 by
+hand, now backed by real code across four different tools.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Write a 2 to 3 sentence README description for this exact
+snack-shop-analysis project, using the real findings from across this
+course.</li>
+<li>Which single file in the structure above would a recruiter most
+likely open first, and why?</li>
+<li>Looking back at every lesson across all five parts, what's the one
+specific finding about our snack shop (a number, a comparison) that
+shows up the most times? Why might that repetition matter when
+explaining your project to someone else?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>This is the finish line, and also the beginning. A polished,
+published, well-explained project is exactly what closes the gap between
+"I learned data analytics" and "I can prove I can do this job."</p>
 <hr />
-<p><strong> Congratulations  you've climbed all five rungs of The
-Analytics Ladder!</strong> Foundational thinking, Excel, SQL, Power BI,
-and Python you now have the full toolkit. The next step is yours:
-build real projects, publish them, and show the world what you can
-do.</p>
+<p>You've now taken one small, four-row snack shop all the way from a
+handwritten notebook through Excel, SQL, Power BI, and Python. Same
+data, same questions, four different tools. That's not a coincidence.
+That's the whole point: the tools change, but the thinking underneath
+them doesn't. Now it's your turn to pick a dataset of your own and climb
+the same five rungs again, for real.</p>
   </div>
 </section>
 
@@ -374,4 +402,4 @@ do.</p>
 </footer>
 
 </body>
-</html>
+  </html>
