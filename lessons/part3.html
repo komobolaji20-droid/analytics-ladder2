@@ -24,7 +24,7 @@
   <div class="wrap">
     <span class="eyebrow">Rung 3 of 5</span>
     <h1 style="font-size: 2rem;">Part 3: SQL</h1>
-    <p class="lead">Read at your own pace. Work through each lessons exercise before moving on.</p>
+    <p class="lead">9 lessons, still built on the same snack shop, now as a real database. Read at your own pace.</p>
   </div>
 </header>
 
@@ -33,302 +33,360 @@
 <h1 id="part-3-sql">Part 3: SQL</h1>
 <p><em>(The Analytics Ladder — Lesson Content)</em></p>
 <hr />
-<h2 id="lesson-1-introduction-to-sql">🗄️ Lesson 1: Introduction to
-SQL</h2>
-<p><strong>Let's start simple</strong> Imagine a library with millions
-of books. Excel is like organizing a small personal bookshelf — great
-for hundreds of rows. But when you have millions of rows, you need
-something bigger: a <strong>database</strong>. SQL (Structured Query
-Language) is how you "talk" to a database and ask it questions.</p>
-<p><strong>Key Ideas</strong> - <strong>Tables</strong>: data is stored
-in tables, just like Excel — rows and columns - <strong>Field
-naming</strong>: each column needs a clear, consistent name (e.g.,
-<code>customer_name</code>, not "Column1") - <strong>Data
-types</strong>: every column has a type — text, number, date — and SQL
-enforces this strictly - <strong>Writing Queries</strong>: a query is
-simply a question you ask the database, written in SQL - <strong>SQL
-"Flavours"</strong>: different databases (MySQL, PostgreSQL, SQL Server)
-speak slightly different dialects of SQL — like British English
-vs. American English. The core is the same.</p>
-<p><strong>A Simple Example</strong> The most basic SQL query looks like
-this:</p>
-<pre><code>SELECT customer_name, amount
-FROM sales
-WHERE amount &gt; 1000;</code></pre>
-<p>In plain English: "Show me the customer name and amount, from the
-sales table, but only where the amount is more than 1000."</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Without running any code
-yet, write out in plain English what this query would ask for:</p>
-<pre><code>SELECT product_name, price
-FROM products
-WHERE price &lt; 500;</code></pre>
-<p><strong>✅ Big Idea to Remember</strong> SQL queries always follow
-the same basic shape: <strong>SELECT</strong> (what you want to see)
-<strong>FROM</strong> (which table) <strong>WHERE</strong> (which
-conditions). Almost everything else you learn builds on this one
-pattern.</p>
+<h2 id="lesson-1-introduction-to-sql">Lesson 1: Introduction to SQL</h2>
+<p>Excel is like organizing a small personal bookshelf, great for a few
+hundred rows. Once you have millions of rows, you need something bigger:
+a database. SQL, or Structured Query Language, is how you talk to a
+database and ask it questions.</p>
+<p>Data lives in tables, the same shape as our snack shop's spreadsheet
+from Parts 1 and 2. Every column needs a clear, consistent name, and
+every column has a type: text, number, date. SQL enforces this strictly.
+A query is simply a question you ask the database, written in SQL.
+Different databases, like MySQL, PostgreSQL, and SQL Server, speak
+slightly different dialects, the way British and American English
+differ, but the core is the same everywhere.</p>
+<p>Let's put our snack shop into a real database table called
+<code>snacks</code>, with the same four rows we've used from the
+start:</p>
+<pre><code>SELECT name, type, price, units_sold
+FROM snacks
+WHERE units_sold &gt; 10;</code></pre>
+<p>In plain English: "Show me the name, type, price, and units sold from
+the snacks table, but only where units sold is more than 10." Run
+against our shop's data, that returns Chin Chin, Coke, and Fanta, and
+leaves out Meat Pie, since its 8 units don't clear the bar of 10.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Without running any code, what would this query return using our
+shop's data:
+<code>SELECT name, price FROM snacks WHERE price &lt; 200;</code>?</li>
+<li>Rewrite the original query in this lesson to instead return snacks
+where units_sold is less than 15. Which rows would come back this
+time?</li>
+<li>Would <code>WHERE units_sold &gt; 10</code> and
+<code>WHERE units_sold &gt;= 10</code> return the same rows from our
+table, or different ones? Why?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>SQL queries always follow the same basic shape: SELECT what you want
+to see, FROM which table, WHERE which conditions. Everything else you
+learn in this part builds on this one pattern.</p>
 <hr />
-<h2 id="lesson-2-intermediate-sql">🛠️ Lesson 2: Intermediate SQL</h2>
-<p><strong>Let's start simple</strong> Now that you can write a basic
-query, let's talk about writing them <em>well</em> — clearly, correctly,
-and in a way that's easy to fix when something goes wrong.</p>
-<p><strong>Key Ideas</strong> - <strong>Querying a database</strong>:
-connecting to real data and running your questions against it -
-<strong>Query execution</strong>: SQL runs your query in a specific
-order behind the scenes (it doesn't read top to bottom like a story!) —
-understanding this helps you debug faster - <strong>Debugging
-SQL</strong>: reading error messages carefully, checking spelling of
-table/column names, and testing small pieces of your query at a time -
-<strong>SQL style</strong>: writing in capital letters for SQL keywords
-(<code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>) and
-lowercase for your own table/column names, with clear indentation — this
-makes queries much easier to read later</p>
-<p><strong>A Simple Example</strong> A messy, hard-to-read query:</p>
-<pre><code>select * from sales where amount&gt;1000 and region='Lagos'</code></pre>
-<p>The same query, written with good style:</p>
+<h2 id="lesson-2-writing-sql-well">Lesson 2: Writing SQL Well</h2>
+<p>Now that you can write a basic query, it's worth learning to write
+them clearly, correctly, and in a way that's easy to fix when something
+breaks.</p>
+<p>SQL runs your query in a specific order behind the scenes, not top to
+bottom like a story, which is part of why debugging can feel confusing
+at first. Reading error messages carefully, checking spelling of table
+and column names, and testing small pieces of a query at a time all
+help. Style matters too: capital letters for SQL keywords, lowercase for
+your own table and column names, with clear indentation.</p>
+<p>Here's the same question about our shop, written two ways. Messy:
+<code>select * from snacks where units_sold&gt;10 and type='Snack'</code>.
+Clean:</p>
 <pre><code>SELECT *
-FROM sales
-WHERE amount &gt; 1000
-  AND region = 'Lagos';</code></pre>
-<p>Both do the exact same thing — but the second one is much easier for
-you (or anyone else) to read and fix later.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Take the messy query above
-and try rewriting it in good style yourself, with capital keywords and
-clean spacing, before checking it against the example.</p>
-<p><strong>✅ Big Idea to Remember</strong> Good SQL isn't just about
-getting the right answer — it's about writing queries that you (and
-others) can still understand six months from now.</p>
+FROM snacks
+WHERE units_sold &gt; 10
+  AND type = 'Snack';</code></pre>
+<p>Both return the same answer, just Chin Chin in our four-row table,
+but the second version is far easier for you, or anyone else, to read
+and fix six months from now.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Rewrite this messy query in good style:
+<code>select name,price from snacks where type='Drink'</code>.</li>
+<li>Run your cleaned-up version against our shop's data mentally. Which
+two snacks come back?</li>
+<li>What's one specific thing that becomes harder to spot in the messy,
+one-line version compared to the clean, multi-line version?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Good SQL isn't just about getting the right answer. It's about
+writing queries you, and others, can still understand months later.</p>
 <hr />
-<h2 id="lesson-3-filtering-comparison">🔎 Lesson 3: Filtering &amp;
+<h2 id="lesson-3-filtering-and-comparison">Lesson 3: Filtering and
 Comparison</h2>
-<p><strong>Let's start simple</strong> Filtering is how you narrow down
-a huge table to just the rows you actually care about — like using a
-sieve to separate what you want from everything else.</p>
-<p><strong>Key Ideas</strong> - <strong>Comparison Operators</strong>:
-<code>=</code>, <code>&gt;</code>, <code>&lt;</code>,
-<code>&gt;=</code>, <code>&lt;=</code>, <code>!=</code> (not equal) -
-<strong>Filtering Numbers</strong>: <code>WHERE age &gt; 18</code> -
-<strong>Filtering Text</strong>: <code>WHERE country = 'Nigeria'</code>
-— text needs quotes! - <strong>NULL handling</strong>: <code>NULL</code>
-means "no value at all" — you can't use <code>= NULL</code>, you must
-use <code>WHERE column IS NULL</code> or <code>IS NOT NULL</code> -
-<strong>CASE Statements</strong>: SQL's version of an IF statement, for
-creating categories on the fly:</p>
+<p>Filtering narrows a huge table down to just the rows you care about,
+like using a sieve to separate what you want from everything else.</p>
+<p>The comparison operators are <code>=</code>, <code>&gt;</code>,
+<code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, and
+<code>!=</code> for not equal. Text needs quotes, so
+<code>WHERE type = 'Snack'</code> works but
+<code>WHERE type = Snack</code> doesn't. <code>NULL</code> means no
+value at all, and you can't check it with <code>= NULL</code>; you need
+<code>IS NULL</code> or <code>IS NOT NULL</code> instead. And
+<code>CASE</code> is SQL's version of an IF statement, for building
+categories on the fly.</p>
+<p>Let's grade our snack shop's items by how well they're selling:</p>
 <pre><code>SELECT name,
   CASE
-    WHEN score &gt;= 70 THEN 'A'
-    WHEN score &gt;= 50 THEN 'B'
-    ELSE 'F'
-  END AS grade
-FROM students;</code></pre>
-<p><strong>A Simple Example</strong> Finding all customers from Nigeria
-who spent more than ₦5,000, and haven't provided a phone number yet:</p>
-<pre><code>SELECT *
-FROM customers
-WHERE country = 'Nigeria'
-  AND amount_spent &gt; 5000
-  AND phone IS NULL;</code></pre>
-<p><strong>🧠 Now You Try (Exercise)</strong> Write a CASE statement
-that labels any score above 80 as "Excellent," scores 50-80 as "Good,"
-and anything below 50 as "Needs Improvement."</p>
-<p><strong>✅ Big Idea to Remember</strong> Filtering is where SQL
-starts to feel powerful — you can ask incredibly specific questions of
-huge tables in just a few lines.</p>
+    WHEN units_sold &gt;= 15 THEN 'Strong seller'
+    WHEN units_sold &gt;= 10 THEN 'Steady seller'
+    ELSE 'Needs attention'
+  END AS performance
+FROM snacks;</code></pre>
+<p>Run against our four rows, Chin Chin and Coke come back as "Strong
+seller," Fanta as "Steady seller," and Meat Pie, with only 8 units, as
+"Needs attention," the exact same flag Excel's conditional formatting
+gave it back in Part 2.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Using the CASE statement above, which category would a fifth snack
+land in if it sold exactly 10 units?</li>
+<li>Write a WHERE clause that filters our table down to only snacks
+priced at ₦150 or less. Which snacks come back?</li>
+<li>If our shop's table had a <code>notes</code> column and some rows
+didn't have anything written there, what SQL condition would find just
+those empty rows?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Filtering is where SQL starts to feel powerful. You can ask specific
+questions of huge tables in just a few lines, the same way our CASE
+statement instantly flagged Meat Pie without you scanning the table by
+eye.</p>
 <hr />
-<h2 id="lesson-4-summarizing-data">📊 Lesson 4: Summarizing Data</h2>
-<p><strong>Let's start simple</strong> Just like Excel's Pivot Tables,
-SQL has its own way of turning thousands of rows into a handful of
-meaningful summary numbers.</p>
-<p><strong>Key Ideas</strong> - <strong>Aggregate Functions</strong>:
-<code>COUNT()</code>, <code>SUM()</code>, <code>AVG()</code>,
-<code>MIN()</code>, <code>MAX()</code> - <strong>GROUP BY</strong>:
-groups rows that share a value, so you can summarize <em>per group</em>
-(e.g., total sales per region) - <strong>Summarizing Subsets</strong>:
-combining <code>WHERE</code> (filter first) with <code>GROUP BY</code>
-(then summarize) - <strong>Aliasing</strong>: renaming a column in your
-results using <code>AS</code>, e.g.,
-<code>SUM(amount) AS total_sales</code> - <strong>Sorting</strong>:
-<code>ORDER BY</code> — arranging your results, e.g., biggest to
-smallest</p>
-<p><strong>A Simple Example</strong> "What's the total sales per region,
-from highest to lowest?"</p>
-<pre><code>SELECT region, SUM(amount) AS total_sales
-FROM sales
-GROUP BY region
-ORDER BY total_sales DESC;</code></pre>
-<p><strong>🧠 Now You Try (Exercise)</strong> Write a query (on paper)
-that finds the average score per subject from a <code>students</code>
-table with columns <code>subject</code> and <code>score</code>, sorted
-from highest average to lowest.</p>
-<p><strong>✅ Big Idea to Remember</strong> Whenever you want an answer
-"per group" (per region, per subject, per customer), you're reaching for
-<code>GROUP BY</code> alongside an aggregate function like
-<code>SUM</code> or <code>AVG</code>.</p>
+<h2 id="lesson-4-summarizing-data">Lesson 4: Summarizing Data</h2>
+<p>Just like Excel's Pivot Tables, SQL has its own way of turning many
+rows into a handful of meaningful summary numbers.</p>
+<p><code>COUNT</code>, <code>SUM</code>, <code>AVG</code>,
+<code>MIN</code>, and <code>MAX</code> are the core aggregate functions.
+<code>GROUP BY</code> groups rows that share a value so you can
+summarize per group. <code>WHERE</code> filters before grouping,
+<code>AS</code> renames a result column, and <code>ORDER BY</code>
+arranges your results.</p>
+<p>Let's ask the same question we answered with a Pivot Table back in
+Part 2, Lesson 5: total units sold, grouped by type.</p>
+<pre><code>SELECT type, SUM(units_sold) AS total_units
+FROM snacks
+GROUP BY type
+ORDER BY total_units DESC;</code></pre>
+<p>Against our table, this returns Drink with 32 units (20 Coke plus 12
+Fanta) ahead of Snack with 23 units (15 Chin Chin plus 8 Meat Pie),
+sorted highest first. Notice this is the exact same answer the Pivot
+Table gave you, just written as SQL instead of dragged with a mouse.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Write a query that finds the average price per type instead of the
+total units. What average does Snack show versus Drink?</li>
+<li>Add a WHERE clause to only include rows where units_sold is above
+10, before grouping by type. Does Meat Pie's row get included in this
+version?</li>
+<li>Compare your GROUP BY answer for total units per type to the Pivot
+Table result from Part 2. Do they match exactly?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Whenever you want an answer "per group," per type, per customer, per
+day, you're reaching for GROUP BY alongside an aggregate function like
+SUM or AVG. It's the same instinct as a Pivot Table, expressed in
+code.</p>
 <hr />
-<h2 id="lesson-5-fundamental-sql-joins">🔗 Lesson 5: Fundamental SQL —
-Joins</h2>
-<p><strong>Let's start simple</strong> Real databases rarely keep
-everything in one giant table — instead, information is spread across
-multiple related tables (customers in one table, their orders in
-another). A <strong>JOIN</strong> is how you combine them back together
-to answer a question that needs both.</p>
-<p><strong>Key Ideas</strong> - <strong>Defining relationships</strong>:
-tables are usually linked by a shared column, like
-<code>customer_id</code> - <strong>INNER JOIN</strong>: brings back only
-rows that match in both tables - <strong>Multiple Joins</strong>:
-combining 3 or more tables together in a single query - <strong>UNION /
-UNION ALL</strong>: stacks two tables' results on top of each other
-(instead of joining them side-by-side) — useful when combining similar
-data from two sources, like sales from 2024 and sales from 2025</p>
-<p><strong>A Simple Example</strong> Finding customer names alongside
-their orders (two separate tables, joined together):</p>
-<pre><code>SELECT customers.name, orders.amount
-FROM customers
-JOIN orders ON customers.customer_id = orders.customer_id;</code></pre>
-<p><strong>🧠 Now You Try (Exercise)</strong> Imagine two tables:
-<code>students</code> (student_id, name) and <code>scores</code>
-(student_id, subject, score). Write out in plain English how you'd join
-them to see each student's name next to their scores.</p>
-<p><strong>✅ Big Idea to Remember</strong> Joins are the heart of
-working with real databases — almost no useful business question can be
-answered from just one table alone.</p>
+<h2 id="lesson-5-joins">Lesson 5: Joins</h2>
+<p>Real databases rarely keep everything in one table. Our shop, for
+instance, might keep snack details in one table and each day's sales in
+another. A JOIN combines them back together to answer a question that
+needs both.</p>
+<p>Tables are usually linked by a shared column, an ID that appears in
+both. An INNER JOIN returns only rows that match in both tables. You can
+join three or more tables in a single query, and UNION stacks two
+tables' results on top of each other rather than joining them side by
+side.</p>
+<p>Let's split our shop's data properly. A <code>snacks</code> table
+holds <code>snack_id</code>, <code>name</code>, <code>type</code>, and
+<code>price</code>. A <code>sales</code> table holds
+<code>sale_id</code>, <code>snack_id</code>, and
+<code>units_sold</code>, one row per day per item. To see snack names
+next to their sales:</p>
+<pre><code>SELECT snacks.name, sales.units_sold
+FROM snacks
+JOIN sales ON snacks.snack_id = sales.snack_id;</code></pre>
+<p>This reconnects the two tables using <code>snack_id</code>, giving
+you back the exact same combined view we've been working with as one
+table all along, except now the snack details and the sales figures can
+be updated independently, and each snack can have many days of sales
+attached to it.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Why might a real shop want to keep <code>snacks</code> and
+<code>sales</code> as two separate tables instead of one big table like
+we've used through Parts 1 and 2?</li>
+<li>If the <code>sales</code> table had three rows for Meat Pie (one per
+day, say 8, 5, and 10 units), what would
+<code>SUM(sales.units_sold)</code> return for Meat Pie after joining the
+two tables and grouping by name?</li>
+<li>What would happen if a row in <code>sales</code> referenced a
+<code>snack_id</code> that didn't exist in the <code>snacks</code>
+table? Would an INNER JOIN include that row or leave it out?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Joins are the heart of working with real databases. Almost no useful
+business question, including every question we've asked about our own
+snack shop, can be answered from just one table alone once the data
+grows realistic.</p>
 <hr />
-<h2 id="lesson-6-subqueries-ctes">🪆 Lesson 6: Subqueries &amp;
-CTEs</h2>
-<p><strong>Let's start simple</strong> Sometimes, to answer one
-question, you first need the answer to a smaller question. A
-<strong>subquery</strong> is a query written inside another query — like
-a question inside a question.</p>
-<p><strong>Key Ideas</strong> - <strong>Subqueries</strong>: a query
-nested inside another query's <code>WHERE</code> or <code>SELECT</code>
-- <strong>Correlated Subqueries</strong>: a subquery that depends on the
-outer query, running once for every row - <strong>Nested
-Subqueries</strong>: subqueries inside subqueries - <strong>Common Table
-Expressions (CTEs)</strong>: a cleaner, more readable way to write
-complex queries, using <code>WITH</code> to name a temporary result you
-can reuse - <strong>CTE vs. Joins/Correlated Subqueries</strong>: CTEs
-are usually easier to read and debug for complex, multi-step logic</p>
-<p><strong>A Simple Example</strong> Finding customers who spent more
-than the average customer, using a subquery:</p>
-<pre><code>SELECT name, amount_spent
-FROM customers
-WHERE amount_spent &gt; (SELECT AVG(amount_spent) FROM customers);</code></pre>
-<p>The same idea, written more readably with a CTE:</p>
-<pre><code>WITH avg_spend AS (
-  SELECT AVG(amount_spent) AS avg_amount FROM customers
+<h2 id="lesson-6-subqueries-and-ctes">Lesson 6: Subqueries and CTEs</h2>
+<p>Sometimes answering one question requires the answer to a smaller
+question first. A subquery is a query written inside another query, a
+question inside a question.</p>
+<p>A subquery can sit inside a WHERE clause or a SELECT clause. A
+correlated subquery depends on the outer query and runs once per row. A
+Common Table Expression, or CTE, is a cleaner way to write complex
+queries, using <code>WITH</code> to name a temporary result you can
+reuse. CTEs are usually easier to read and debug than deeply nested
+subqueries.</p>
+<p>Let's find which of our snacks sold above the shop's average. Our
+four units-sold values, 15, 20, 8, and 12, average out to 13.75.</p>
+<pre><code>SELECT name, units_sold
+FROM snacks
+WHERE units_sold &gt; (SELECT AVG(units_sold) FROM snacks);</code></pre>
+<p>That inner query calculates 13.75, and the outer query then returns
+only rows above it: Chin Chin at 15 and Coke at 20. The same logic,
+written as a CTE instead:</p>
+<pre><code>WITH avg_sales AS (
+  SELECT AVG(units_sold) AS avg_units FROM snacks
 )
-SELECT name, amount_spent
-FROM customers, avg_spend
-WHERE amount_spent &gt; avg_amount;</code></pre>
-<p><strong>🧠 Now You Try (Exercise)</strong> In plain English, explain
-what the subquery example above is doing, step by step — starting with
-the inner query first.</p>
-<p><strong>✅ Big Idea to Remember</strong> When a question needs an
-answer <em>within</em> an answer, reach for a subquery or CTE — and once
-your logic gets complex, CTEs almost always keep things more
-readable.</p>
+SELECT name, units_sold
+FROM snacks, avg_sales
+WHERE units_sold &gt; avg_units;</code></pre>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Walk through the subquery version step by step: what does the inner
+query calculate first, and what does the outer query do with that
+result?</li>
+<li>If Meat Pie's units_sold increased from 8 to 20, would the average
+used in the inner query change? Would that change which snacks qualify
+in the outer query's result?</li>
+<li>Which version, the subquery or the CTE, would you rather read again
+six months from now? Why?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>When a question needs an answer within an answer, like "above
+average" needing the average calculated first, reach for a subquery or
+CTE. As logic gets more complex, CTEs usually stay easier to follow.</p>
 <hr />
-<h2 id="lesson-7-window-functions">🪟 Lesson 7: Window Functions</h2>
-<p><strong>Let's start simple</strong> Sometimes you want to compare
-each row to a group — like "rank each student's score within their own
-class" — without collapsing all the individual rows into one summary.
-This is exactly what <strong>window functions</strong> are built
-for.</p>
-<p><strong>Key Ideas</strong> - <strong>Ranking Functions</strong>:
-<code>RANK()</code>, <code>ROW_NUMBER()</code> — assigns a rank to each
-row - <strong>Sliding Window / Frames</strong>: calculations that look
-at a "window" of nearby rows (e.g., the last 7 days) - <strong>Moving
-Average</strong>: an average that updates as you move through the data —
-useful for smoothing out noisy trends - <strong>Paging</strong>:
-splitting results into pages, useful for showing "Top 10" style results
-- <strong>Pivoting</strong>: reshaping rows into columns (or vice versa)
-for reporting</p>
-<p><strong>A Simple Example</strong> Ranking students by score within
-each class:</p>
-<pre><code>SELECT name, class, score,
-  RANK() OVER (PARTITION BY class ORDER BY score DESC) AS class_rank
-FROM students;</code></pre>
-<p>This gives every student a rank — but <em>restarts the ranking</em>
-for each class, thanks to <code>PARTITION BY</code>.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> In plain English, describe
-what would change in the example above if you removed
-<code>PARTITION BY class</code> entirely.</p>
-<p><strong>✅ Big Idea to Remember</strong> Window functions let you
-compare each row to a group, without losing any of the individual rows —
-think of it as "GROUP BY, but keeping every row visible."</p>
+<h2 id="lesson-7-window-functions">Lesson 7: Window Functions</h2>
+<p>Sometimes you want to compare each row to a group, like ranking each
+snack's sales within its own type, without collapsing the individual
+rows into one summary. That's exactly what window functions do.</p>
+<p><code>RANK()</code> and <code>ROW_NUMBER()</code> assign a rank to
+each row. A sliding window or frame looks at nearby rows, useful for
+something like a 7-day moving average. <code>PARTITION BY</code>
+restarts a calculation for each group instead of running it across the
+whole table.</p>
+<p>Let's rank our snacks by units sold, but separately within each
+type:</p>
+<pre><code>SELECT name, type, units_sold,
+  RANK() OVER (PARTITION BY type ORDER BY units_sold DESC) AS rank_in_type
+FROM snacks;</code></pre>
+<p>Within Drink, Coke ranks 1 and Fanta ranks 2. Within Snack, Chin Chin
+ranks 1 and Meat Pie ranks 2. Every row keeps its own line in the
+result, unlike GROUP BY, which would have collapsed Drink into one row
+and Snack into another.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>What would change in the query above if you removed
+<code>PARTITION BY type</code> entirely? Would Coke still rank 1?</li>
+<li>If a fifth snack, another Drink, sold 25 units, where would it rank
+among the Drink group?</li>
+<li>In your own words, what's the difference between what GROUP BY gives
+you and what a window function with PARTITION BY gives you, using our
+snack shop as the example?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Window functions let you compare each row to a group without losing
+any individual rows. Think of it as GROUP BY that keeps every row
+visible instead of collapsing them.</p>
 <hr />
-<h2 id="lesson-8-functions-for-manipulating-data">🔤 Lesson 8: Functions
+<h2 id="lesson-8-functions-for-manipulating-data">Lesson 8: Functions
 for Manipulating Data</h2>
-<p><strong>Let's start simple</strong> Just like Excel has text and date
-functions, SQL has its own toolbox for cleaning and reshaping messy data
-directly inside the database.</p>
-<p><strong>Key Ideas</strong> - <strong>Common Data Types</strong>:
-<code>INT</code> (whole numbers), <code>DECIMAL</code> (numbers with
-decimals), <code>VARCHAR</code> (text), <code>DATE</code> - <strong>Date
-&amp; Time Functions</strong>: retrieving the current timestamp
-(<code>NOW()</code> or <code>CURRENT_TIMESTAMP</code>), extracting parts
-of a date (<code>YEAR()</code>, <code>MONTH()</code>) - <strong>String
-Functions</strong>: changing text case (<code>UPPER()</code>,
-<code>LOWER()</code>), parsing string and character data
-(<code>SUBSTRING()</code>) - <strong>Working with Arrays</strong>: some
-databases let a single column hold a list of values, and searching
-within them - <strong>Numeric Functions</strong>: rounding, and using
-numeric data with summary functions like <code>SUM</code> and
-<code>AVG</code></p>
-<p><strong>A Simple Example</strong> Standardizing messy names to a
-consistent format:</p>
-<pre><code>SELECT UPPER(TRIM(customer_name)) AS clean_name
-FROM customers;</code></pre>
-<p>This removes extra spaces and makes every name uppercase, so "
-bolaji" and "Bolaji" both become "BOLAJI" — matching correctly instead
-of being treated as different values.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Write a query (on paper)
-that extracts just the year from an <code>order_date</code> column, so
-you could later count how many orders happened per year.</p>
-<p><strong>✅ Big Idea to Remember</strong> SQL isn't just for
-retrieving data — it has a full toolbox for cleaning and reshaping messy
-text, dates, and numbers right inside the query itself.</p>
+<p>Just like Excel has text and date functions, SQL has its own toolbox
+for cleaning and reshaping data directly inside the database.</p>
+<p>Common data types include <code>INT</code> for whole numbers,
+<code>DECIMAL</code> for numbers with decimals, <code>VARCHAR</code> for
+text, and <code>DATE</code>. String functions like <code>UPPER()</code>
+and <code>LOWER()</code> change case, and <code>SUBSTRING()</code> pulls
+out part of a piece of text. Date functions extract parts of a date,
+like the year or month, from a timestamp.</p>
+<p>Remember the messy text problem from Part 2, Lesson 3, where "Meat
+Pie" showed up with extra spaces and inconsistent capitalization? SQL
+solves it the same way Excel did:</p>
+<pre><code>SELECT UPPER(TRIM(name)) AS clean_name
+FROM snacks;</code></pre>
+<p>This strips extra spaces and forces uppercase, so "meat pie" and "
+Meat Pie" both become "MEAT PIE," matching correctly instead of being
+miscounted as two different snacks, the exact bug we worked through with
+PROPER and TRIM back in Excel.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>If our <code>sales</code> table had a <code>sale_date</code> column,
+what SQL function from this lesson would extract just the year from
+it?</li>
+<li>Write a query that returns every snack's name in all lowercase,
+using a function from this lesson.</li>
+<li>Compare <code>UPPER(TRIM(name))</code> in SQL to
+<code>PROPER(TRIM(A2))</code> in Excel from Part 2. What's the same, and
+what's different, about how the two tools solve the same problem?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>SQL isn't just for retrieving data. It has a full toolbox for
+cleaning and reshaping messy text, dates, and numbers right inside the
+query itself, the same jobs you first solved with formulas back in
+Excel.</p>
 <hr />
-<h2 id="lesson-9-creating-and-managing-tables">🏗️ Lesson 9: Creating and
+<h2 id="lesson-9-creating-and-managing-tables">Lesson 9: Creating and
 Managing Tables</h2>
-<p><strong>Let's start simple</strong> So far, we've focused on
-<em>asking questions</em> of existing data. But SQL can also <em>build
-and manage</em> the tables themselves — this is where you go from "user
-of a database" to someone who truly understands how it's built.</p>
-<p><strong>Key Ideas</strong> - <strong>CREATE TABLE</strong>: defines a
-brand new table and its columns - <strong>Column Constraints</strong>:
-rules on a column, like "this can never be empty"
-(<code>NOT NULL</code>) or "this must be unique" (<code>UNIQUE</code>) -
-<strong>The Key to a Database</strong>: a <code>PRIMARY KEY</code>
-uniquely identifies each row — like an ID number no two people share -
-<strong>INSERT INTO</strong>: adds new rows of data -
-<strong>UPDATE</strong>: changes existing data - <strong>ALTER
-TABLE</strong>: changes a table's structure (like adding a new column) -
-<strong>DELETE vs. DROP TABLE</strong>: <code>DELETE</code> removes
-specific rows; <code>DROP TABLE</code> removes the entire table
-completely - <strong>Temporary Tables</strong>: tables that exist only
-for the current session, useful for breaking a complex problem into
-smaller steps</p>
-<p><strong>A Simple Example</strong> Creating a simple table for
-students:</p>
-<pre><code>CREATE TABLE students (
-  student_id INT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  score DECIMAL(5,2)
+<p>So far, every lesson asked questions of data that already existed.
+SQL can also build and manage the tables themselves.</p>
+<p><code>CREATE TABLE</code> defines a new table and its columns. Column
+constraints are rules, like <code>NOT NULL</code> meaning a value can
+never be empty, or <code>UNIQUE</code> meaning no two rows can share it.
+A <code>PRIMARY KEY</code> uniquely identifies each row, an ID number no
+two rows share. <code>INSERT INTO</code> adds rows, <code>UPDATE</code>
+changes existing rows, <code>ALTER TABLE</code> changes the table's
+structure, and <code>DELETE</code> removes specific rows while
+<code>DROP TABLE</code> removes the whole table.</p>
+<p>Let's finally create our snack shop's table properly, from
+scratch:</p>
+<pre><code>CREATE TABLE snacks (
+  snack_id INT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  type VARCHAR(20) NOT NULL,
+  price DECIMAL(6,2),
+  units_sold INT
 );
 
-INSERT INTO students VALUES (1, 'Bolaji', 85.5);
+INSERT INTO snacks VALUES (1, 'Chin Chin', 'Snack', 200, 15);
+INSERT INTO snacks VALUES (2, 'Coke', 'Drink', 150, 20);
+INSERT INTO snacks VALUES (3, 'Meat Pie', 'Snack', 300, 8);
+INSERT INTO snacks VALUES (4, 'Fanta', 'Drink', 150, 12);
 
-UPDATE students SET score = 90 WHERE student_id = 1;</code></pre>
-<p><strong>🧠 Now You Try (Exercise)</strong> On paper, design a simple
-table for tracking books in a small library: what columns would you
-need, and which one would you make the <code>PRIMARY KEY</code>?</p>
-<p><strong>✅ Big Idea to Remember</strong> Every table you've ever
-queried started with a <code>CREATE TABLE</code> statement, designed
-with intention — good table design makes every future query easier.</p>
+UPDATE snacks SET units_sold = 10 WHERE name = 'Meat Pie';</code></pre>
+<p>That last line updates Meat Pie's units_sold from 8 to 10, exactly
+the kind of change that would happen if a correction came in after the
+fact.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Why does <code>snack_id</code> make sense as the PRIMARY KEY here,
+rather than <code>name</code>? Think back to the "coke" versus "Coke"
+typo problem from earlier lessons.</li>
+<li>Write an ALTER TABLE statement that would add a new column called
+<code>notes</code> to the snacks table.</li>
+<li>If you ran <code>DELETE FROM snacks WHERE name = 'Meat Pie';</code>,
+how many rows would remain in the table? What if you ran
+<code>DROP TABLE snacks;</code> instead?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Every table you've ever queried started with a CREATE TABLE
+statement, designed with intention. Good table design, like giving our
+shop's snacks a proper snack_id, makes every future query easier and
+prevents the exact mismatches that caused problems back in earlier
+lessons.</p>
 <hr />
-<p><strong>🎉 You've completed Part 3: SQL!</strong> Next up: bringing
-your data to life visually with <strong>Power BI</strong>.</p>
+<p>You've now taken the same four snacks from Part 1's notebook all the
+way through a full relational database: created the table, filtered it,
+summarized it, joined it against sales, ranked its rows, and cleaned its
+text. Next up: bringing this same data to life visually, in Power
+BI.</p>
   </div>
 </section>
 
