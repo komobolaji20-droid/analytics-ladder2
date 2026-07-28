@@ -24,7 +24,7 @@
   <div class="wrap">
     <span class="eyebrow">Rung 4 of 5</span>
     <h1 style="font-size: 2rem;">Part 4: Power BI</h1>
-    <p class="lead">Read at your own pace. Work through each lessons exercise before moving on.</p>
+    <p class="lead">9 lessons, modeling and visualizing the same snack shop data. Read at your own pace.</p>
   </div>
 </header>
 
@@ -33,244 +33,317 @@
 <h1 id="part-4-power-bi">Part 4: Power BI</h1>
 <p><em>(The Analytics Ladder — Lesson Content)</em></p>
 <hr />
-<h2 id="lesson-1-introduction-to-power-bi-navigating">🖥️ Lesson 1:
-Introduction to Power BI &amp; Navigating</h2>
-<p><strong>Let's start simple</strong> If Excel is a notebook and SQL is
-a filing cabinet, Power BI is like a movie studio — it's where you turn
-data into interactive visual stories that people can click, filter, and
-explore themselves.</p>
-<p><strong>Key Ideas</strong> - Power BI has three main views:
-<strong>Report view</strong> (where you build visuals), <strong>Data
-view</strong> (where you see your raw tables), and <strong>Model
-view</strong> (where you connect tables together) - You typically bring
-data into Power BI, clean it, connect your tables, then build visuals —
-in that order</p>
-<p><strong>A Simple Example</strong> You import a sales spreadsheet into
-Power BI. In Data view, you can see every row, just like Excel. Switch
-to Report view, and you can drag "Region" and "Sales" onto a blank
-canvas to instantly create your first chart.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> If you have Power BI
-installed, open it and explore the three views (Report, Data, Model)
-using any small spreadsheet. If not yet installed, write down what you
-<em>think</em> each of the three views is for, based on the explanation
-above.</p>
-<p><strong>✅ Big Idea to Remember</strong> Power BI isn't just "Excel
-with better charts" — it's a complete system for connecting, modeling,
-and presenting data as one interactive experience.</p>
+<h2 id="lesson-1-introduction-to-power-bi-and-navigating">Lesson 1:
+Introduction to Power BI and Navigating</h2>
+<p>If Excel is a notebook and SQL is a filing cabinet, Power BI is
+closer to a movie studio: a place where data becomes an interactive
+visual story people can click, filter, and explore themselves.</p>
+<p>Power BI has three main views. Report view is where you build
+visuals. Data view shows your raw tables, similar to opening a
+spreadsheet. Model view is where you connect tables together. The usual
+order is to bring data in, clean it, connect the tables, then build
+visuals.</p>
+<p>Let's bring our snack shop in. Import the <code>snacks</code> and
+<code>sales</code> tables we built in Part 3, the same snack_id, name,
+type, price on one side and sale_id, snack_id, units_sold on the other.
+In Data view, you'd see both tables looking almost exactly like they did
+in a SQL client. Switch to Report view, drag "name" and "units_sold"
+onto a blank canvas, and Power BI draws your first chart instantly, the
+same shop data, now interactive.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>If you have Power BI installed, import the snacks and sales tables
+and look at them in Data view. Do they look the way you'd expect from
+Part 3?</li>
+<li>Based on the description above, what do you think would happen if
+you tried to build a chart in Report view before connecting the two
+tables in Model view?</li>
+<li>Which of the three views would you open first if a colleague handed
+you a Power BI file you'd never seen before, and why?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Power BI isn't just "Excel with better charts." It's a complete
+system for connecting, modeling, and presenting data as one interactive
+experience, and our two small tables are enough to see all three views
+working together.</p>
 <hr />
-<h2 id="lesson-2-etl-workflow-introduction-to-power-query">🔄 Lesson 2:
-ETL Workflow &amp; Introduction to Power Query</h2>
-<p><strong>Let's start simple</strong> Just like in Excel, Power BI uses
-<strong>Power Query</strong> to clean and prepare data before it's ever
-used in a chart. This process has a name: <strong>ETL</strong> —
-Extract, Transform, Load.</p>
-<p><strong>Key Ideas</strong> - <strong>Extract</strong>: pulling data
-in from a source (Excel file, database, website) -
-<strong>Transform</strong>: cleaning and reshaping it (removing errors,
-renaming columns, fixing data types) - <strong>Load</strong>: bringing
-the cleaned data into Power BI's model, ready to use</p>
-<p><strong>A Simple Example</strong> You connect Power BI to a messy
-sales CSV with inconsistent date formats. In Power Query, you fix the
-date format once — and every time the file updates, Power BI
-automatically repeats that same fix without you touching anything.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Write out, in your own
-words, what "Extract, Transform, Load" would look like if you were
-preparing ingredients to cook a meal — matching each ETL step to a
-cooking step.</p>
-<p><strong>✅ Big Idea to Remember</strong> Nothing in Power BI should
-touch raw, messy data directly — everything passes through Power Query
-first, exactly like washing ingredients before cooking.</p>
+<h2 id="lesson-2-etl-and-power-query-in-power-bi">Lesson 2: ETL and
+Power Query in Power BI</h2>
+<p>Just like in Excel, Power BI uses Power Query to clean and prepare
+data before it ever reaches a chart. This process has a name: ETL,
+standing for Extract, Transform, Load.</p>
+<p>Extract means pulling data in from a source. Transform means cleaning
+and reshaping it, removing errors, renaming columns, fixing data types.
+Load means bringing the cleaned data into Power BI's model, ready to
+use.</p>
+<p>Remember the messy "Meat Pie" text problem from Parts 2 and 3, extra
+spaces and inconsistent capitalization? If our shop's sales data arrived
+in Power BI with that same problem, you'd fix it once inside Power
+Query, using a Trim step and a Capitalize Each Word step, exactly like
+the PROPER and TRIM combination from Excel and the UPPER and TRIM
+combination from SQL. The difference is that Power Query remembers the
+fix, and it reapplies automatically every time the file refreshes.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>In your own words, describe what "Extract, Transform, Load" would
+look like specifically for our shop's snacks and sales tables.</li>
+<li>If the sales table arrived with a typo like "20" recorded as "2O"
+(letter O instead of zero) for Coke's units, would that be caught during
+Transform, or would it need fixing earlier? Why?</li>
+<li>Compare the Power Query "clean once, refresh forever" approach to
+the Trim and Proper formulas from Excel Part 2, Lesson 3. What's the
+actual difference in effort over time?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Nothing in Power BI should touch raw, messy data directly. Everything
+passes through Power Query first, the same discipline you already
+practiced with our shop's data in both Excel and SQL.</p>
 <hr />
-<h2 id="lesson-3-data-preparation-in-power-query">🧽 Lesson 3: Data
+<h2 id="lesson-3-data-preparation-in-power-query">Lesson 3: Data
 Preparation in Power Query</h2>
-<p><strong>Let's start simple</strong> Now let's go deeper into what
-actually happens inside Power Query — the specific cleaning and shaping
-tasks that turn messy source data into something ready for analysis.</p>
-<p><strong>Key Ideas</strong> - Removing unnecessary columns and rows -
-Renaming columns to be clear and consistent - Fixing data types (making
-sure a "date" column is actually recognized as a date, not text) -
-Splitting or merging columns (e.g., splitting "First Last" into two
-separate columns) - Every change you make is recorded as a numbered,
-editable step — this is called the "Applied Steps" list</p>
-<p><strong>A Simple Example</strong> A dataset has a column called "Full
-Name" with values like "Bolaji Zachariah." In Power Query, you can split
-this into "First Name" and "Last Name" in one click — and this split
-will automatically repeat every time new data is loaded.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Think of a messy dataset
-you've seen before (even a school result sheet). List 3 specific
-cleaning steps you'd need to perform on it before it's ready for
-analysis.</p>
-<p><strong>✅ Big Idea to Remember</strong> Because Power Query
-remembers every step you take, data preparation becomes a one-time
-investment — not a chore you repeat every time new data arrives.</p>
+<p>Now let's go deeper into what actually happens inside Power Query:
+the specific cleaning and shaping tasks that turn source data into
+something ready for analysis.</p>
+<p>This includes removing unnecessary columns and rows, renaming columns
+to be clear and consistent, fixing data types so a date column is
+actually recognized as a date rather than text, and splitting or merging
+columns. Every change you make is recorded as a numbered, editable step,
+called the Applied Steps list.</p>
+<p>Suppose our <code>sales</code> table arrived with a single column
+called "Sale Info" containing values like "3-Coke-20," combining the
+sale ID, snack name, and units sold into one messy string. In Power
+Query, you could split that one column into three clean columns in a
+couple of clicks, and that split would repeat automatically on every
+future file, the same way splitting "Full Name" into first and last name
+would work for a customer list.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>If our sales data arrived with prices stored as text, like "₦150"
+instead of the number 150, what step would you need in Power Query
+before any SUM or AVG calculation could work correctly?</li>
+<li>List the Applied Steps, in order, you'd expect after: importing the
+sales table, splitting the "Sale Info" column, then removing a blank
+row. Does order matter here?</li>
+<li>Why is having a recorded, editable list of steps more useful than
+just quietly fixing the data by hand each time?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Because Power Query remembers every step you take, data preparation
+becomes a one-time investment rather than a chore you repeat each time
+new sales data lands, whether that data comes from our snack shop or
+anywhere else.</p>
 <hr />
-<h2 id="lesson-4-data-modeling">🧩 Lesson 4: Data Modeling</h2>
-<p><strong>Let's start simple</strong> This is one of the most important
-lessons in the entire Power BI journey. A <strong>data model</strong> is
-how your different tables relate to each other — think of it as drawing
-a family tree that shows how everything connects.</p>
-<p><strong>Key Ideas</strong> - <strong>Fact Tables vs. Dimension
-Tables</strong>: A <em>fact table</em> holds the actual measurable
-events (e.g., individual sales transactions). A <em>dimension table</em>
-holds descriptive details about those events (e.g., a list of products,
-or a list of customers). - <strong>Star Schema</strong>: the most common
-way to organize a data model — one fact table in the center, surrounded
-by dimension tables connected to it, like a star. - <strong>Building
-Relationships</strong>: connecting tables together using a shared column
-(e.g., <code>product_id</code> in both the sales table and the products
-table) - <strong>Cardinality</strong>: describes how rows relate between
-two tables — "one-to-many" means one product can appear in many sales
-rows, but each sale points to only one product - <strong>Cross-Filter
-Direction</strong>: controls which table's filters affect the other when
-you click on a chart</p>
-<p><strong>A Simple Example</strong> A sales fact table has columns:
-<code>date</code>, <code>product_id</code>, <code>customer_id</code>,
-<code>amount</code>. It connects to a <code>products</code> dimension
-table (with product names, categories) and a <code>customers</code>
-dimension table (with names, cities) — each linked by their shared ID
-column. This is a simple star schema.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> On paper, sketch a star
-schema for a school: one fact table for "test results" (student_id,
-subject_id, score), connected to two dimension tables — one for
-students, one for subjects. Draw the connections.</p>
-<p><strong>✅ Big Idea to Remember</strong> A messy or missing data
-model is the #1 reason beginners get confused, wrong, or duplicated
-numbers in Power BI. Get the model right first — everything downstream
-depends on it.</p>
+<h2 id="lesson-4-data-modeling">Lesson 4: Data Modeling</h2>
+<p>This is one of the most important lessons in the entire Power BI
+journey. A data model is how your different tables relate to each other,
+like drawing a family tree that shows how everything connects.</p>
+<p>A fact table holds measurable events, like individual sales
+transactions. A dimension table holds descriptive details about those
+events, like a list of products. The most common way to organize this is
+a star schema: one fact table in the center, surrounded by dimension
+tables connected to it. Cardinality describes how rows relate between
+two tables, and cross-filter direction controls which table's filters
+affect the other when you click on a chart.</p>
+<p>Our own snack shop already fits this exactly. <code>sales</code> is
+the fact table: it holds the actual measurable event, units_sold, tied
+to a snack_id and a sale_id. <code>snacks</code> is the dimension table:
+it holds descriptive details, name, type, price, one row per snack.
+Connect them by <code>snack_id</code>, and you have a simple, correct
+star schema, one fact table and one dimension table.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>In our shop's model, which table is the fact table and which is the
+dimension table? Justify your answer using the definitions above.</li>
+<li>If the shop later added a <code>customers</code> table (customer_id,
+name, city) and each sale recorded which customer bought it, would
+<code>customers</code> be a fact table or another dimension table?</li>
+<li>Sketch (on paper) the star schema for our shop with all three
+tables: snacks, sales, and customers, showing which columns connect
+them.</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>A messy or missing data model is the number one reason beginners get
+confused, wrong, or duplicated numbers in Power BI. Our shop's model is
+about as simple as it gets, one fact table and one dimension table, and
+that simplicity is exactly what you should aim to preserve even as real
+projects grow larger.</p>
 <hr />
-<h2 id="lesson-5-introduction-to-dax">🧮 Lesson 5: Introduction to
-DAX</h2>
-<p><strong>Let's start simple</strong> DAX (Data Analysis Expressions)
-is Power BI's own formula language — similar in spirit to Excel
-formulas, but built specifically to work across your entire data model,
-not just individual cells.</p>
-<p><strong>Key Ideas</strong> - DAX formulas always start by naming what
-you're creating, followed by <code>=</code> - Unlike Excel, DAX formulas
-are aware of your whole data model — filters, relationships, and all</p>
-<p><strong>A Simple Example</strong> A very first DAX formula,
-calculating total sales:</p>
-<pre><code>Total Sales = SUM(Sales[Amount])</code></pre>
-<p>This single line can now be dragged into any chart, and it will
-automatically recalculate correctly no matter how the report is filtered
-— by region, by date, by product, anything.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> In plain English, describe
-what you think <code>Total Sales = SUM(Sales[Amount])</code> is doing,
-based on what you already know about SQL's <code>SUM()</code> function
-from Part 3.</p>
-<p><strong>✅ Big Idea to Remember</strong> DAX feels intimidating at
-first because it looks like a new language — but it borrows heavily from
-ideas you already know from Excel formulas and SQL aggregate
-functions.</p>
+<h2 id="lesson-5-introduction-to-dax">Lesson 5: Introduction to DAX</h2>
+<p>DAX, short for Data Analysis Expressions, is Power BI's own formula
+language. It's similar in spirit to Excel formulas, but built to work
+across your entire data model rather than individual cells.</p>
+<p>A DAX formula always starts by naming what you're creating, followed
+by an equals sign. Unlike an Excel formula sitting in one cell, DAX
+formulas are aware of your whole data model, including filters and
+relationships.</p>
+<p>Let's write our first one, calculating total revenue across the
+shop:</p>
+<pre><code>Total Revenue = SUMX(sales, sales[units_sold] * RELATED(snacks[price]))</code></pre>
+<p>This single line pulls each sale's units_sold, multiplies it by that
+snack's price from the related snacks table, and adds it all up, giving
+the same ₦9,300 total we first calculated by hand back in Part 1. Once
+written, this measure can be dropped into any chart and will recalculate
+correctly no matter how the report gets filtered, by type, by snack, by
+date.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Based on what you already know about SQL's SUM function from Part 3,
+describe in plain English what the DAX formula above is doing.</li>
+<li>Why does this formula need <code>RELATED(snacks[price])</code>
+instead of just referencing a <code>price</code> column directly inside
+the <code>sales</code> table?</li>
+<li>If you filtered a report to show only Drinks, would this measure
+automatically recalculate to show just Drink revenue, or would it still
+show the full ₦9,300? Why?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>DAX feels intimidating at first because it looks like a new language,
+but it borrows heavily from ideas you already know: SUM from Excel and
+SQL, and the relationships you just built in Lesson 4's data model.</p>
 <hr />
-<h2 id="lesson-6-calculated-columns-measures-common-dax-functions">📐
-Lesson 6: Calculated Columns, Measures &amp; Common DAX Functions</h2>
-<p><strong>Let's start simple</strong> DAX gives you two different ways
-to add new calculations to your model, and knowing which one to use is
-one of the most important beginner skills in Power BI.</p>
-<p><strong>Key Ideas</strong> - <strong>Calculated Column</strong>:
-creates a new column of data, calculated row by row, and stored
-permanently in your table (uses more memory) - <strong>Measure</strong>:
-calculates a result <em>on the fly</em>, based on whatever is currently
-being viewed/filtered — much more flexible and efficient, and the one
-you'll use most often - <strong><code>CALCULATE()</code></strong>: one
-of the most powerful DAX functions — lets you change the filter context
-of a calculation (e.g., "total sales, but only for 2025") - <strong>Time
-Intelligence Functions</strong>: built-in functions for comparing across
-time, like "sales this year vs. last year"</p>
-<p><strong>A Simple Example</strong> A measure calculating sales just
-for Lagos:</p>
-<pre><code>Lagos Sales = CALCULATE(SUM(Sales[Amount]), Sales[Region] = "Lagos")</code></pre>
-<p>This measure will automatically update if you add it to a chart
-that's already filtered by date or product — DAX handles all of that
-filtering logic for you.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Without writing real code,
-describe in plain English what a measure called
-<code>2025 Sales = CALCULATE(SUM(Sales[Amount]), YEAR(Sales[Date]) = 2025)</code>
-would calculate.</p>
-<p><strong>✅ Big Idea to Remember</strong> When in doubt, use a Measure
-rather than a Calculated Column — measures are more flexible, use less
-memory, and automatically respect whatever filters are applied to your
-report.</p>
+<h2
+id="lesson-6-calculated-columns-measures-and-common-dax-functions">Lesson
+6: Calculated Columns, Measures, and Common DAX Functions</h2>
+<p>DAX gives you two different ways to add calculations to your model,
+and knowing which to use is one of the most important beginner skills in
+Power BI.</p>
+<p>A calculated column creates a new column of data, calculated row by
+row and stored permanently in the table. A measure calculates a result
+on the fly, based on whatever is currently being viewed or filtered, and
+is more flexible and efficient. <code>CALCULATE()</code> is one of the
+most powerful DAX functions, letting you change the filter context of a
+calculation.</p>
+<p>Let's build a measure for just Snack-type revenue:</p>
+<pre><code>Snack Revenue = CALCULATE([Total Revenue], snacks[type] = "Snack")</code></pre>
+<p>Using our shop's numbers, that returns the combined Chin Chin and
+Meat Pie revenue, ₦3,000 plus ₦2,400 (once Meat Pie's units_sold was
+corrected to 10 back in Part 3), for a total of ₦5,400. This measure
+automatically updates if it's added to a chart that's already filtered
+by date or by a specific snack, since CALCULATE is designed to layer on
+top of whatever filters already exist.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Without writing real code, describe in plain English what a measure
+called
+<code>Drink Revenue = CALCULATE([Total Revenue], snacks[type] = "Drink")</code>
+would calculate.</li>
+<li>Would Snack Revenue plus Drink Revenue equal Total Revenue from
+Lesson 5? Why should that always be true if the model is built
+correctly?</li>
+<li>If you built Total Revenue as a calculated column instead of a
+measure, what would go wrong when someone filtered the report to just
+one snack type?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>When in doubt, use a measure rather than a calculated column.
+Measures are more flexible, use less memory, and automatically respect
+whatever filters are applied to your report, exactly as we saw with
+Snack Revenue above.</p>
 <hr />
-<h2 id="lesson-7-building-reports-visualizing-data">📈 Lesson 7:
-Building Reports &amp; Visualizing Data</h2>
-<p><strong>Let's start simple</strong> Now that your data is modeled and
-your DAX measures are ready, it's time to actually build the report —
-the visual page people will interact with.</p>
-<p><strong>Key Ideas</strong> - <strong>Report types</strong>:
-single-page summary reports, multi-page detailed reports, or paginated
-(print-style) reports - Drag fields and measures directly onto the
-canvas to create visuals — bar charts, line charts, cards (single big
-numbers), maps, and tables - <strong>Slicers</strong>: interactive
-filters that let the viewer explore the data themselves (e.g., a
-dropdown to pick a specific region)</p>
-<p><strong>A Simple Example</strong> You build a report with a big
-"Total Sales" card at the top, a bar chart of sales by region below it,
-and a slicer letting the viewer pick a specific year — instantly, every
-visual on the page updates together.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Sketch (on paper) a simple
-one-page report layout for a school — what 3 visuals would you include,
-and where would you place each one?</p>
-<p><strong>✅ Big Idea to Remember</strong> A great Power BI report
-isn't just charts on a page — it's an <em>interactive experience</em>
-where the viewer can click, filter, and explore the data themselves,
-without needing you there to explain it.</p>
+<h2 id="lesson-7-building-reports-and-visualizing-data">Lesson 7:
+Building Reports and Visualizing Data</h2>
+<p>With the model built and DAX measures ready, it's time to build the
+actual report: the visual page people will interact with.</p>
+<p>Reports can be single-page summaries, multi-page detailed reports, or
+paginated print-style reports. You drag fields and measures onto the
+canvas to create visuals: bar charts, line charts, cards for single big
+numbers, tables. Slicers are interactive filters that let the viewer
+explore the data themselves.</p>
+<p>Let's build our shop's first report page. A card showing Total
+Revenue at the top, ₦9,300 in bold. Below it, a bar chart with "name" on
+one axis and units_sold on the other, the same comparison we first
+sketched by hand in Part 1. A slicer for "type," so the owner can toggle
+between Snack and Drink and instantly watch every visual on the page
+update, thanks to the relationships built in Lesson 4.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Sketch (on paper) this one-page report layout: where would you place
+the Total Revenue card relative to the bar chart, and why?</li>
+<li>If the owner clicks "Snack" on your type slicer, what should happen
+to the Total Revenue card, based on what you learned about CALCULATE in
+Lesson 6?</li>
+<li>What's one additional visual you'd add to this report using our
+shop's data, and what question would it answer?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>A great Power BI report isn't just charts on a page. It's an
+interactive experience where the viewer can click, filter, and explore
+the data themselves, without needing you there to explain it, the same
+principle we first discussed with dashboards back in Part 1.</p>
 <hr />
-<h2 id="lesson-8-dashboard-design-data-storytelling-in-power-bi">🎯
-Lesson 8: Dashboard Design &amp; Data Storytelling in Power BI</h2>
-<p><strong>Let's start simple</strong> Remember our earlier lessons on
-Dashboard Design Principles and Data Storytelling from Part 1? Now it's
-time to actually apply them, using everything Power BI gives you.</p>
-<p><strong>Key Ideas</strong> - Apply the same rules: keep it simple,
-use color with purpose, put the most important number top-left, align
-everything neatly - Use titles and short text boxes to guide the viewer
-through the story you're telling — don't just present charts and leave
-people to guess - Group related visuals together, and use consistent
-colors across the whole report</p>
-<p><strong>A Simple Example</strong> Instead of a page full of unlabeled
-charts, a well-designed Power BI report has a clear title ("Q3 Sales
-Performance"), a short summary sentence at the top ("Sales grew 12% this
-quarter, driven by Lagos"), and charts arranged to support that one
-central message.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Look back at your Lesson 7
-sketch. Add one sentence at the top of your sketched report that
-summarizes the "story" you'd want that report to tell someone in 5
-seconds.</p>
-<p><strong>✅ Big Idea to Remember</strong> A technically correct report
-that tells no clear story still fails at its real job. Every report
-should have one central message the viewer walks away remembering.</p>
+<h2
+id="lesson-8-dashboard-design-and-data-storytelling-in-power-bi">Lesson
+8: Dashboard Design and Data Storytelling in Power BI</h2>
+<p>Remember the dashboard design principles and data storytelling
+lessons from Part 1? Now it's time to apply them directly, using
+everything Power BI gives you.</p>
+<p>The same rules apply: keep it simple, use colour with purpose, put
+the most important number top-left, align everything neatly. Titles and
+short text boxes guide the viewer through the story instead of leaving
+them to guess. Related visuals get grouped together with consistent
+colours across the whole report.</p>
+<p>Take our one-page report from Lesson 7 and add a title: "Snack Shop
+Performance Overview." Add a one-line summary text box underneath:
+"Drinks are outselling Snacks 32 to 23 units, with Meat Pie needing
+attention." That single sentence, sitting above the bar chart and card,
+tells the shop owner the whole story in five seconds, the exact
+non-technical storytelling skill from Part 1, Lesson 4, now embedded
+directly into the report itself.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Write your own one-line summary sentence for our shop's report,
+using the actual numbers we've calculated throughout this course.</li>
+<li>Where on the report page would you place that summary sentence, and
+why does its position matter?</li>
+<li>If the shop owner only had five seconds to look at this report,
+which single element, the card, the chart, or your summary sentence,
+would you make sure they saw first?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>A technically correct report that tells no clear story still fails at
+its real job. Every report should have one central message the viewer
+walks away remembering, the same message our shop's numbers have been
+building toward since Part 1.</p>
 <hr />
-<h2 id="lesson-9-publishing-sharing">🚀 Lesson 9: Publishing &amp;
+<h2 id="lesson-9-publishing-and-sharing">Lesson 9: Publishing and
 Sharing</h2>
-<p><strong>Let's start simple</strong> A Power BI report sitting only on
-your own laptop is exactly like the "hidden project" problem we talked
-about earlier — nobody else can see it or use it! Publishing is how you
-make your work truly usable by others.</p>
-<p><strong>Key Ideas</strong> - <strong>Power BI Service</strong>: the
-online platform where you publish reports so others can view them
-through a web browser, without needing Power BI installed - <strong>Data
-Refresh Schedules</strong>: setting your report to automatically pull in
-new data on a schedule (e.g., every morning at 6am), instead of manually
-refreshing forever - <strong>Dashboards vs. Reports</strong>: a
-<em>report</em> is a detailed, multi-visual page you build; a
-<em>dashboard</em> is often a simpler, pinned summary of your favorite
-visuals from one or more reports, for quick daily monitoring</p>
-<p><strong>A Simple Example</strong> You build a sales report and
-publish it to the Power BI Service. You set it to refresh automatically
-every morning at 6am, so by the time your manager checks it at 9am, the
-numbers are already up to date — without you doing anything.</p>
-<p><strong>🧠 Now You Try (Exercise)</strong> Write 2-3 sentences
-describing why a published, auto-refreshing report is more valuable to a
-real employer than a beautiful report that only exists on your personal
-laptop.</p>
-<p><strong>✅ Big Idea to Remember</strong> Just like your earlier
-GitHub lesson taught you: the work isn't finished when it's built — it's
-finished when it's published, shared, and visible to the people who need
-it.</p>
+<p>A Power BI report sitting only on your own laptop is exactly the
+"hidden project" problem from Part 1, Lesson 11. Nobody else can see it
+or use it. Publishing is how you make it truly usable.</p>
+<p>The Power BI Service is the online platform where you publish reports
+so others can view them through a browser without Power BI installed.
+Data refresh schedules let a report automatically pull in new data on a
+schedule instead of manual refreshing. A report is a detailed,
+multi-visual page you build; a dashboard is often a simpler, pinned
+summary of your favourite visuals, useful for quick daily
+monitoring.</p>
+<p>Publish our shop's report to the Power BI Service, and set it to
+refresh every morning at 6am. By the time the owner checks it over
+breakfast, the numbers already reflect the previous day's sales, without
+anyone touching a spreadsheet.</p>
+<p><strong>Now you try it</strong></p>
+<ol type="1">
+<li>Write 2 to 3 sentences describing why a published, auto-refreshing
+version of our shop's report is more valuable to the real owner than the
+same report sitting only on your laptop.</li>
+<li>If the shop wanted a quick daily glance from just the Total Revenue
+card, would that make more sense as its own dashboard, or does it belong
+inside the full report? Why?</li>
+<li>Looking back at Part 1's GitHub lesson, how is publishing a Power BI
+report to the Power BI Service similar to pushing a project to GitHub?
+How is it different?</li>
+</ol>
+<p><strong>The takeaway</strong></p>
+<p>Just like the GitHub lesson taught you: the work isn't finished when
+it's built. It's finished when it's published, shared, and visible to
+the people who need it, whether that's a recruiter on GitHub or a shop
+owner checking their dashboard over breakfast.</p>
 <hr />
-<p><strong>🎉 You've completed Part 4: Power BI!</strong> Next up: the
-final rung — using <strong>Python</strong> to clean, analyze, and
-automate data at a whole new level.</p>
+<p>You've now taken the same snack shop all the way from a handwritten
+notebook in Part 1, through Excel, through a full SQL database, and now
+into a modeled, published, interactive Power BI report. Next up: the
+final rung, using Python to clean, analyze, and automate this same kind
+of work at a whole new level.</p>
   </div>
 </section>
 
@@ -289,4 +362,4 @@ automate data at a whole new level.</p>
 </footer>
 
 </body>
-</html>
+  </html>
